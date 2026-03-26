@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 380" width="280" height="380">
+  <defs>
+    <!-- Globe gradients -->
+    <radialGradient id="ocean" cx="45%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#2a7ab5"/>
+      <stop offset="100%" stop-color="#1b4b7a"/>
+    </radialGradient>
+    <radialGradient id="shine" cx="35%" cy="30%" r="50%">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.25)"/>
+      <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+    </radialGradient>
+    <clipPath id="globeClip">
+      <circle cx="228" cy="72" r="40"/>
+    </clipPath>
+  </defs>
+
+  <!-- Background -->
+  <rect width="280" height="380" rx="8" fill="#0b213f"/>
+
+  <!-- "J" letter -->
+  <path d="M 30 140 L 72 140 L 72 260 Q 72 300 40 300 Q 20 300 10 290 L 30 268 Q 36 274 42 274 Q 52 274 52 258 L 52 140 Z" fill="white"/>
+
+  <!-- "B" letter -->
+  <path d="M 85 140 L 140 140 Q 170 140 170 168 Q 170 185 155 192 Q 175 200 175 222 Q 175 255 142 255 L 85 255 Z
+           M 108 158 L 108 188 L 135 188 Q 148 188 148 173 Q 148 158 135 158 Z
+           M 108 205 L 108 237 L 138 237 Q 153 237 153 221 Q 153 205 138 205 Z" fill="white"/>
+
+  <!-- "i" stem (no dot - globe replaces it) -->
+  <rect x="190" y="140" width="28" height="115" rx="2" fill="white"/>
+
+  <!-- Globe (replaces dot of "i") -->
+  <circle cx="204" cy="80" r="42" fill="url(#ocean)"/>
+
+  <!-- Land masses - stylized continents -->
+  <g clip-path="url(#globeClip)" transform="translate(-24, 8)">
+    <!-- Asia / Australia region -->
+    <path d="M 230 52 Q 238 48 245 50 L 252 55 Q 258 52 262 56 L 260 64 Q 256 68 250 66 L 244 60 Q 238 58 234 62 L 230 58 Z" fill="#76c043"/>
+    <path d="M 248 68 Q 255 65 260 68 L 264 74 Q 260 80 254 78 L 248 72 Z" fill="#76c043"/>
+    <path d="M 220 58 Q 228 54 235 58 L 238 65 Q 242 70 248 72 L 252 80 Q 248 86 240 84 L 232 78 Q 226 74 222 68 L 218 62 Z" fill="#76c043"/>
+    <!-- More land -->
+    <path d="M 236 86 Q 242 84 246 88 L 244 94 Q 240 96 236 92 Z" fill="#76c043"/>
+    <!-- Upper landmass -->
+    <path d="M 240 40 Q 248 36 256 40 L 260 46 Q 256 50 248 48 L 242 44 Z" fill="#76c043"/>
+    <path d="M 218 44 Q 224 40 232 42 L 236 48 Q 232 54 226 52 L 220 48 Z" fill="#88c657"/>
+    <!-- Africa-like shape -->
+    <path d="M 210 60 Q 216 56 222 60 L 224 68 Q 226 76 222 82 L 216 86 Q 210 82 212 74 L 210 66 Z" fill="#80c34c"/>
+    <!-- Small islands -->
+    <path d="M 256 82 Q 260 80 264 84 L 262 90 Q 258 92 256 88 Z" fill="#93ca68"/>
+    <path d="M 268 70 Q 272 68 274 72 L 272 76 Q 268 76 268 72 Z" fill="#76c043"/>
+  </g>
+
+  <!-- Globe highlight/shine -->
+  <circle cx="204" cy="80" r="42" fill="url(#shine)"/>
+  <!-- Globe outline -->
+  <circle cx="204" cy="80" r="42" fill="none" stroke="#1b4b7a" stroke-width="1.5" opacity="0.3"/>
+
+  <!-- "SOFTWARE, INC" text -->
+  <text x="140" y="310" text-anchor="middle" fill="white" font-family="'Inter', 'Arial', sans-serif" font-size="24" font-weight="600" letter-spacing="3">SOFTWARE, INC</text>
+</svg>

@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultant Intake Form — JBISOFTWARE</title>
+    <meta name="description" content="Apply to join JBISOFTWARE's network of IT, healthcare IT, and clinical professionals. Complete our consultant intake form to get started.">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Consultant Intake Form — JBISOFTWARE">
+    <meta property="og:description" content="Apply to join JBISOFTWARE's network of IT, healthcare IT, and clinical professionals.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://staffing.jbisoftware.com/intake.html">
+    <meta property="og:image" content="https://staffing.jbisoftware.com/logo-full.png">
+    <link rel="icon" href="logo.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="icons.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <a href="#main" class="skip-link">Skip to content</a>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo"><img src="logo-nav-brand.png" alt="JBISOFTWARE, INC" loading="lazy"></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="epic.html">Epic</a></li>
+                <li><a href="jobs.html">Jobs</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <a href="contact.html" class="btn btn-primary btn-sm nav-cta">Get Started</a>
+            <button class="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+    <div class="mobile-nav" id="mobileNav">
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="epic.html">Epic</a>
+        <a href="jobs.html">Jobs</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="intake.html" class="active">Intake Form</a>
+        <a href="contact.html" class="btn btn-primary" style="margin-top:16px;text-align:center;">Get Started</a>
+    </div>
+
+    <!-- Page Header -->
+    <section class="page-header" id="main">
+        <div class="container">
+            <h1>Apply to join our network.</h1>
+            <p>Takes about 5 minutes. We'll review your info and reach out within 48 hours if there's a fit.</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container intake-main">
+        <!-- Instructions Notice -->
+        <div class="intake-notice">
+            <p><strong>Please complete all required fields marked with an asterisk (*).</strong> This information is required for staffing coordination and onboarding.</p>
+        </div>
+
+        <form id="intakeForm" class="intake-form" action="https://formspree.io/f/your-form-id" method="POST">
+            <!-- Section 1: Personal Information -->
+            <section class="intake-section">
+                <h2>Personal Information</h2>
+
+                <div class="form-group">
+                    <label for="staffingArea">Staffing Area <span class="required">*</span></label>
+                    <select id="staffingArea" name="staffingArea" required>
+                        <option value="">-- Select Area --</option>
+                        <option value="IT Staffing">IT Staffing</option>
+                        <option value="Healthcare IT">Healthcare IT</option>
+                        <option value="Clinical Staffing">Clinical Staffing</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="positionTitle">Position Title <span class="required">*</span></label>
+                    <select id="positionTitle" name="positionTitle" required>
+                        <option value="">-- Select a Position --</option>
+                        <optgroup label="Healthcare IT">
+                            <option value="EPIC Analyst">EPIC Analyst</option>
+                            <option value="EPIC Trainer">EPIC Trainer</option>
+                            <option value="EPIC Credentialed Trainer">EPIC Credentialed Trainer</option>
+                            <option value="EPIC Project Manager">EPIC Project Manager</option>
+                            <option value="EPIC Builder">EPIC Builder</option>
+                            <option value="EPIC Support Specialist">EPIC Support Specialist</option>
+                            <option value="EPIC Go-Live Support">EPIC Go-Live Support</option>
+                            <option value="Cerner Analyst">Cerner Analyst</option>
+                            <option value="Implementation Specialist">Implementation Specialist</option>
+                        </optgroup>
+                        <optgroup label="IT Staffing">
+                            <option value="Software Developer">Software Developer</option>
+                            <option value="Systems Analyst">Systems Analyst</option>
+                            <option value="Business Analyst">Business Analyst</option>
+                            <option value="Cloud Engineer">Cloud Engineer</option>
+                            <option value="DevOps Engineer">DevOps Engineer</option>
+                            <option value="Database Administrator">Database Administrator</option>
+                            <option value="IT Project Manager">IT Project Manager</option>
+                            <option value="QA Analyst">QA Analyst</option>
+                        </optgroup>
+                        <optgroup label="Clinical">
+                            <option value="Registered Nurse">Registered Nurse (RN)</option>
+                            <option value="Nurse Practitioner">Nurse Practitioner (NP)</option>
+                            <option value="Physician Assistant">Physician Assistant (PA)</option>
+                            <option value="Physician">Physician (MD/DO)</option>
+                            <option value="Allied Health Professional">Allied Health Professional</option>
+                        </optgroup>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name <span class="required">*</span></label>
+                        <input type="text" id="firstName" name="firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name <span class="required">*</span></label>
+                        <input type="text" id="lastName" name="lastName" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone <span class="required">*</span></label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="location">Location (City, State) <span class="required">*</span></label>
+                    <input type="text" id="location" name="location" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Worker Classification <span class="required">*</span></label>
+                    <div class="radio-group">
+                        <label class="radio-item">
+                            <input type="radio" name="workerClass" value="W2" required>
+                            <span>W2</span>
+                        </label>
+                        <label class="radio-item">
+                            <input type="radio" name="workerClass" value="1099">
+                            <span>1099</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Availability <span class="required">*</span></label>
+                    <div class="radio-group">
+                        <label class="radio-item">
+                            <input type="radio" name="availability" value="Immediate" required>
+                            <span>Immediate</span>
+                        </label>
+                        <label class="radio-item">
+                            <input type="radio" name="availability" value="2 weeks">
+                            <span>2 Weeks</span>
+                        </label>
+                        <label class="radio-item">
+                            <input type="radio" name="availability" value="30 days">
+                            <span>30 Days</span>
+                        </label>
+                        <label class="radio-item">
+                            <input type="radio" name="availability" value="Other">
+                            <span>Other</span>
+                        </label>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: Qualifications -->
+            <section class="intake-section">
+                <h2>Qualifications &amp; Experience</h2>
+
+                <div class="form-group">
+                    <label>EHR/EMR Certifications (if applicable)</label>
+                    <div class="checkbox-grid">
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="certifications" value="Epic Certified">
+                            <span>Epic Certified</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="certifications" value="Epic Credentialed Trainer">
+                            <span>Epic Credentialed Trainer</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="certifications" value="Cerner Certified">
+                            <span>Cerner Certified</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="certifications" value="Meditech Proficient">
+                            <span>Meditech Proficient</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="certifications" value="Allscripts Certified">
+                            <span>Allscripts Certified</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="certifications" value="Other EHR">
+                            <span>Other EHR</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="certifications" value="N/A">
+                            <span>N/A</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Clinical Licenses (if applicable)</label>
+                    <div class="checkbox-grid">
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="licenses" value="MD/DO">
+                            <span>MD/DO</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="licenses" value="NP">
+                            <span>NP</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="licenses" value="PA">
+                            <span>PA</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="licenses" value="RN">
+                            <span>RN</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="licenses" value="LPN/LVN">
+                            <span>LPN/LVN</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="licenses" value="Allied Health">
+                            <span>Allied Health</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="licenses" value="N/A">
+                            <span>N/A</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Workflow Familiarity (if applicable)</label>
+                    <div class="checkbox-grid">
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="workflows" value="Inpatient">
+                            <span>Inpatient</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="workflows" value="Outpatient / Ambulatory">
+                            <span>Outpatient / Ambulatory</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="workflows" value="Emergency Department">
+                            <span>Emergency Department</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="workflows" value="Operating Room / Surgical">
+                            <span>Operating Room / Surgical</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="workflows" value="Revenue Cycle">
+                            <span>Revenue Cycle</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="yearsExp">Years of Experience <span class="required">*</span></label>
+                    <select id="yearsExp" name="yearsExp" required>
+                        <option value="">-- Select --</option>
+                        <option value="0-2">0 - 2 years</option>
+                        <option value="3-5">3 - 5 years</option>
+                        <option value="6-10">6 - 10 years</option>
+                        <option value="10+">10+ years</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="experienceDesc">Describe Your Relevant Experience <span class="required">*</span></label>
+                    <textarea id="experienceDesc" name="experienceDesc" rows="5" placeholder="Summarize your relevant experience, key projects, and any specializations..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="otherCerts">Other Certifications &amp; Credentials</label>
+                    <textarea id="otherCerts" name="otherCerts" rows="3" placeholder="PMP, AWS, CompTIA, clinical certifications, etc."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Willing to Travel / Relocate?</label>
+                    <div class="radio-group">
+                        <label class="radio-item">
+                            <input type="radio" name="willingToTravel" value="Yes">
+                            <span>Yes</span>
+                        </label>
+                        <label class="radio-item">
+                            <input type="radio" name="willingToTravel" value="No">
+                            <span>No</span>
+                        </label>
+                        <label class="radio-item">
+                            <input type="radio" name="willingToTravel" value="Depends">
+                            <span>Depends on Location</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="additionalComments">Additional Comments</label>
+                    <textarea id="additionalComments" name="additionalComments" rows="3"></textarea>
+                </div>
+            </section>
+
+            <!-- Section 3: Certification & Acknowledgment -->
+            <section class="intake-section">
+                <h2>Certification &amp; Acknowledgment</h2>
+
+                <p class="certification-text">I certify that all information provided in this form is accurate and complete. I understand that misrepresentation may result in disqualification.</p>
+
+                <div class="form-group">
+                    <label for="signature">Signature — Type Full Name <span class="required">*</span></label>
+                    <input type="text" id="signature" name="signature" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="certDate">Date <span class="required">*</span></label>
+                    <input type="date" id="certDate" name="certDate" required>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="downloadBtn">Download as PDF / Print</button>
+                    <button type="reset" class="btn btn-secondary" id="clearBtn">Clear Form</button>
+                    <button type="submit" class="btn btn-primary" id="submitBtn">Submit Application</button>
+                </div>
+            </section>
+        </form>
+
+        <!-- Success/Error States -->
+        <div class="form-status" id="intakeSuccess">
+            <div class="status-icon"><span class="icon-svg icon-check-big" style="width:48px;height:48px;"></span></div>
+            <h3>Application Submitted</h3>
+            <p>Thank you for your interest in joining the JBISOFTWARE network. Our team will review your application and be in touch soon.</p>
+            <a href="index.html" class="btn btn-secondary" style="margin-top:24px;">Back to Home</a>
+        </div>
+        <div class="form-status" id="intakeError">
+            <div class="status-icon"><span class="icon-svg icon-alert" style="width:48px;height:48px;"></span></div>
+            <h3>Submission Failed</h3>
+            <p>Your application couldn't be submitted. Please try again or email us directly at <a href="mailto:info@jbisoftware.com">info@jbisoftware.com</a>.</p>
+            <button class="btn btn-secondary" style="margin-top:24px;" onclick="document.getElementById('intakeError').classList.remove('active');document.getElementById('intakeForm').style.display='block';document.querySelector('.intake-notice').style.display='block';">Try Again</button>
+        </div>
+
+        <!-- Confidentiality Notice -->
+        <div class="intake-notice">
+            <p><strong>Confidentiality Notice:</strong> This form contains personal information. Please submit securely and do not share with unauthorized individuals.</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo"><img src="logo-nav-brand.png" alt="JBISOFTWARE, INC" loading="lazy"></div>
+                    <p>Premier staffing firm specializing in IT, healthcare IT, and clinical workforce solutions with 15+ years of proven experience.</p>
+                </div>
+                <div>
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="jobs.html">Jobs</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="services.html#it-staffing">IT Staffing</a></li>
+                        <li><a href="services.html#healthcare-it">Healthcare IT</a></li>
+                        <li><a href="services.html#clinical-staffing">Clinical Staffing</a></li>
+                        <li><a href="services.html#staffing-models">Staffing Models</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contact Us</h4>
+                    <div class="footer-contact-item">2 Park Ave, FL 20, New York, NY 10016-9306</div>
+                    <div class="footer-contact-item"><a href="tel:2128788828">212-878-8828</a></div>
+                    <div class="footer-contact-item"><a href="mailto:info@jbisoftware.com">info@jbisoftware.com</a></div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2026 JBISOFTWARE, INC. All rights reserved.</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script>
+        // Form Handlers
+        const intakeForm = document.getElementById('intakeForm');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const clearBtn = document.getElementById('clearBtn');
+
+        downloadBtn.addEventListener('click', () => { window.print(); });
+
+        clearBtn.addEventListener('click', () => {
+            if (confirm('Are you sure you want to clear all form data?')) {
+                intakeForm.reset();
+            }
+        });
+
+        const submitBtn = document.getElementById('submitBtn');
+        intakeForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            submitBtn.classList.add('loading');
+            submitBtn.textContent = 'Submitting...';
+            try {
+                const res = await fetch(intakeForm.action, {
+                    method: 'POST',
+                    body: new FormData(intakeForm),
+                    headers: { 'Accept': 'application/json' }
+                });
+                if (res.ok) {
+                    intakeForm.style.display = 'none';
+                    document.querySelectorAll('.intake-notice').forEach(n => n.style.display = 'none');
+                    document.getElementById('intakeSuccess').classList.add('active');
+                } else {
+                    throw new Error('Failed');
+                }
+            } catch {
+                intakeForm.style.display = 'none';
+                document.querySelectorAll('.intake-notice').forEach(n => n.style.display = 'none');
+                document.getElementById('intakeError').classList.add('active');
+            }
+            submitBtn.classList.remove('loading');
+            submitBtn.textContent = 'Submit Application';
+        });
+    </script>
+</body>
+</html>
