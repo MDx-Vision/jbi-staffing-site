@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JBI Staffing Site — Client Questionnaire | Wild Wolf Agency</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --wwa-black: #0a0a0a;
+            --wwa-dark: #1a1a1a;
+            --wwa-gray: #2a2a2a;
+            --wwa-mid: #555;
+            --wwa-light: #999;
+            --wwa-border: #333;
+            --wwa-bg: #f5f5f0;
+            --wwa-white: #ffffff;
+            --wwa-accent: #c8ff00;
+            --wwa-accent-dim: #a6d400;
+            --wwa-red: #ff4444;
+            --wwa-blue: #0B213F;
+            --wwa-teal: #2ec4b6;
+            --radius: 8px;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--wwa-bg);
+            color: var(--wwa-dark);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Print styles */
+        @media print {
+            body { background: white; font-size: 11px; line-height: 1.4; }
+            .no-print { display: none !important; }
+            .questionnaire-header { background: var(--wwa-black) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .section-card { break-inside: avoid; box-shadow: none; border: 1px solid #ddd; }
+            .form-input, .form-textarea, .form-select { border: 1px solid #ccc; background: white; }
+            .progress-bar { display: none; }
+            textarea { min-height: 60px !important; }
+        }
+
+        /* Header */
+        .questionnaire-header {
+            background: var(--wwa-black);
+            color: white;
+            padding: 48px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .questionnaire-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: var(--wwa-accent);
+            opacity: .06;
+            border-radius: 50%;
+        }
+        .header-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+        }
+        .wwa-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(200, 255, 0, .1);
+            border: 1px solid rgba(200, 255, 0, .3);
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: .75rem;
+            font-weight: 600;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            color: var(--wwa-accent);
+            margin-bottom: 20px;
+        }
+        .wwa-badge svg { width: 14px; height: 14px; }
+        .header-title {
+            font-size: 2rem;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 12px;
+        }
+        .header-title span { color: var(--wwa-accent); }
+        .header-subtitle {
+            color: #aaa;
+            font-size: .95rem;
+            max-width: 560px;
+            line-height: 1.7;
+        }
+        .header-meta {
+            display: flex;
+            gap: 32px;
+            margin-top: 28px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255,255,255,.1);
+            font-size: .8rem;
+            color: #888;
+        }
+        .header-meta strong { color: white; font-weight: 600; display: block; margin-bottom: 2px; }
+
+        /* Progress */
+        .progress-bar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--wwa-black);
+            padding: 12px 0;
+            border-bottom: 1px solid var(--wwa-border);
+        }
+        .progress-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .progress-track {
+            flex: 1;
+            height: 4px;
+            background: var(--wwa-gray);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: var(--wwa-accent);
+            border-radius: 2px;
+            transition: width .4s ease;
+            width: 0%;
+        }
+        .progress-label {
+            color: #888;
+            font-size: .75rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        /* Main */
+        .main-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 24px 120px;
+        }
+
+        /* Section cards */
+        .section-card {
+            background: var(--wwa-white);
+            border-radius: 12px;
+            padding: 36px 32px;
+            margin-bottom: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,.06);
+            border: 1px solid #e5e5e0;
+        }
+        .section-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: var(--wwa-black);
+            color: var(--wwa-accent);
+            font-size: .75rem;
+            font-weight: 700;
+            border-radius: 6px;
+            margin-bottom: 12px;
+        }
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--wwa-black);
+            margin-bottom: 4px;
+        }
+        .section-desc {
+            font-size: .85rem;
+            color: var(--wwa-light);
+            margin-bottom: 28px;
+        }
+
+        /* Form elements */
+        .field-group {
+            margin-bottom: 24px;
+        }
+        .field-group:last-child { margin-bottom: 0; }
+        .field-label {
+            display: block;
+            font-size: .8rem;
+            font-weight: 600;
+            color: var(--wwa-dark);
+            margin-bottom: 6px;
+            letter-spacing: .02em;
+        }
+        .field-hint {
+            display: block;
+            font-size: .75rem;
+            color: var(--wwa-light);
+            margin-bottom: 8px;
+        }
+        .form-input, .form-textarea, .form-select {
+            width: 100%;
+            padding: 10px 14px;
+            font-family: inherit;
+            font-size: .9rem;
+            border: 1.5px solid #ddd;
+            border-radius: var(--radius);
+            background: var(--wwa-white);
+            color: var(--wwa-dark);
+            transition: border-color .2s;
+        }
+        .form-input:focus, .form-textarea:focus, .form-select:focus {
+            outline: none;
+            border-color: var(--wwa-black);
+            box-shadow: 0 0 0 3px rgba(10,10,10,.06);
+        }
+        .form-textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        .form-select {
+            cursor: pointer;
+            -webkit-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23999' viewBox='0 0 16 16'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            padding-right: 36px;
+        }
+
+        /* Two column */
+        .field-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        @media (max-width: 600px) {
+            .field-row { grid-template-columns: 1fr; }
+        }
+
+        /* Checkbox groups */
+        .check-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .check-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            cursor: pointer;
+        }
+        .check-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            margin-top: 2px;
+            accent-color: var(--wwa-black);
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        .check-item span {
+            font-size: .85rem;
+            color: var(--wwa-mid);
+            line-height: 1.5;
+        }
+
+        /* Radio groups */
+        .radio-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .radio-pill {
+            display: flex;
+            align-items: center;
+        }
+        .radio-pill input { display: none; }
+        .radio-pill label {
+            padding: 8px 18px;
+            font-size: .8rem;
+            font-weight: 500;
+            border: 1.5px solid #ddd;
+            border-radius: 100px;
+            cursor: pointer;
+            transition: all .2s;
+            color: var(--wwa-mid);
+        }
+        .radio-pill input:checked + label {
+            background: var(--wwa-black);
+            border-color: var(--wwa-black);
+            color: var(--wwa-accent);
+        }
+        .radio-pill label:hover {
+            border-color: var(--wwa-black);
+        }
+
+        /* Rating scale */
+        .rating-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .rating-label {
+            font-size: .85rem;
+            color: var(--wwa-mid);
+            min-width: 200px;
+        }
+        .rating-pills {
+            display: flex;
+            gap: 4px;
+        }
+        .rating-pills input { display: none; }
+        .rating-pills label {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .8rem;
+            font-weight: 600;
+            border: 1.5px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all .2s;
+            color: var(--wwa-light);
+        }
+        .rating-pills input:checked + label {
+            background: var(--wwa-black);
+            border-color: var(--wwa-black);
+            color: var(--wwa-accent);
+        }
+        .rating-pills label:hover {
+            border-color: var(--wwa-black);
+        }
+        @media (max-width: 600px) {
+            .rating-row { flex-direction: column; align-items: flex-start; gap: 8px; }
+            .rating-label { min-width: unset; }
+        }
+
+        /* Divider */
+        .field-divider {
+            border: none;
+            border-top: 1px solid #eee;
+            margin: 28px 0;
+        }
+
+        /* Action bar */
+        .action-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--wwa-black);
+            border-top: 1px solid var(--wwa-border);
+            padding: 16px 0;
+            z-index: 100;
+        }
+        .action-inner {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+        .action-hint {
+            font-size: .8rem;
+            color: #666;
+        }
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        .btn-wwa {
+            padding: 10px 24px;
+            font-family: inherit;
+            font-size: .85rem;
+            font-weight: 600;
+            border: none;
+            border-radius: var(--radius);
+            cursor: pointer;
+            transition: all .2s;
+        }
+        .btn-save {
+            background: var(--wwa-gray);
+            color: #ccc;
+        }
+        .btn-save:hover { background: #444; }
+        .btn-download {
+            background: var(--wwa-accent);
+            color: var(--wwa-black);
+        }
+        .btn-download:hover { background: var(--wwa-accent-dim); }
+
+        @media (max-width: 600px) {
+            .action-hint { display: none; }
+            .section-card { padding: 24px 20px; }
+            .header-meta { flex-direction: column; gap: 12px; }
+        }
+
+        /* Page rating table */
+        .page-review-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .page-review-table th {
+            text-align: left;
+            font-size: .75rem;
+            font-weight: 600;
+            color: var(--wwa-light);
+            text-transform: uppercase;
+            letter-spacing: .04em;
+            padding: 8px 0;
+            border-bottom: 2px solid #eee;
+        }
+        .page-review-table td {
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: .85rem;
+            vertical-align: top;
+        }
+        .page-review-table .page-name {
+            font-weight: 600;
+            color: var(--wwa-black);
+            min-width: 100px;
+        }
+        .page-review-table input[type="text"] {
+            width: 100%;
+            padding: 6px 10px;
+            font-family: inherit;
+            font-size: .8rem;
+            border: 1.5px solid #eee;
+            border-radius: 6px;
+            background: #fafaf8;
+        }
+        .page-review-table input[type="text"]:focus {
+            outline: none;
+            border-color: var(--wwa-black);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="questionnaire-header no-print-bg">
+        <div class="header-inner">
+            <div class="wwa-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                Wild Wolf Agency
+            </div>
+            <h1 class="header-title">JBI Staffing Site <span>Questionnaire</span></h1>
+            <p class="header-subtitle">We need your input to finalize the website. Fill out what you can, skip what you don't know yet, and download as PDF when you're done. Nothing is final — this just gets us on the same page.</p>
+            <div class="header-meta">
+                <div>
+                    <strong>Client</strong>
+                    JBI Software, Inc.
+                </div>
+                <div>
+                    <strong>Project</strong>
+                    staffing.jbisoftware.com Redesign
+                </div>
+                <div>
+                    <strong>Date</strong>
+                    <span id="todayDate"></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Progress -->
+    <div class="progress-bar no-print">
+        <div class="progress-inner">
+            <div class="progress-track">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <span class="progress-label" id="progressLabel">0% complete</span>
+        </div>
+    </div>
+
+    <!-- Main -->
+    <main class="main-content">
+
+        <!-- Section 1: Company Facts -->
+        <div class="section-card" data-section="1">
+            <div class="section-number">1</div>
+            <h2 class="section-title">Company Facts & Numbers</h2>
+            <p class="section-desc">We're using these numbers across the site. Please confirm or correct them.</p>
+
+            <div class="field-row">
+                <div class="field-group">
+                    <label class="field-label">Years in business</label>
+                    <span class="field-hint">We currently show "15+"</span>
+                    <input type="text" class="form-input" name="years_in_business" placeholder="e.g. 17 years (founded 2009)">
+                </div>
+                <div class="field-group">
+                    <label class="field-label">Go-lives completed</label>
+                    <span class="field-hint">We currently show "200+"</span>
+                    <input type="text" class="form-input" name="golives" placeholder="e.g. 215">
+                </div>
+            </div>
+
+            <div class="field-row">
+                <div class="field-group">
+                    <label class="field-label">Professionals placed</label>
+                    <span class="field-hint">We currently show "3,500+"</span>
+                    <input type="text" class="form-input" name="professionals_placed" placeholder="e.g. 4,200">
+                </div>
+                <div class="field-group">
+                    <label class="field-label">Health systems served</label>
+                    <span class="field-hint">We currently show "50+"</span>
+                    <input type="text" class="form-input" name="health_systems" placeholder="e.g. 62">
+                </div>
+            </div>
+
+            <hr class="field-divider">
+
+            <div class="field-group">
+                <label class="field-label">Awards, certifications, or rankings</label>
+                <span class="field-hint">KLAS rankings, Epic certifications, industry awards, etc. List anything we can feature on the site.</span>
+                <textarea class="form-textarea" name="awards" placeholder="e.g. Epic Gold Stars, KLAS ranked, Minority Business Enterprise certified, etc."></textarea>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Anything else we should know about JBI's history?</label>
+                <textarea class="form-textarea" name="company_history" placeholder="Founding story, milestones, acquisitions, key partnerships..."></textarea>
+            </div>
+        </div>
+
+        <!-- Section 2: Services -->
+        <div class="section-card" data-section="2">
+            <div class="section-number">2</div>
+            <h2 class="section-title">Services Confirmation</h2>
+            <p class="section-desc">We built pages for these service lines. Check the ones that are correct, uncheck any that should be removed.</p>
+
+            <div class="field-group">
+                <label class="field-label">Current service lines on the site</label>
+                <div class="check-group">
+                    <label class="check-item"><input type="checkbox" name="svc_it" checked><span><strong>IT Staffing</strong> — developers, cloud engineers, DBAs, cybersecurity, help desk</span></label>
+                    <label class="check-item"><input type="checkbox" name="svc_hcit" checked><span><strong>Healthcare IT Staffing</strong> — Epic/Cerner analysts, trainers, implementation teams</span></label>
+                    <label class="check-item"><input type="checkbox" name="svc_clinical" checked><span><strong>Clinical Staffing</strong> — physicians, nurses, allied health, dental, behavioral</span></label>
+                    <label class="check-item"><input type="checkbox" name="svc_softdev" checked><span><strong>Software Development</strong> — in-house custom apps, AI, HIPAA-compliant</span></label>
+                    <label class="check-item"><input type="checkbox" name="svc_tws" checked><span><strong>TWS Translation</strong> — patented real-time translation platform</span></label>
+                    <label class="check-item"><input type="checkbox" name="svc_epic" checked><span><strong>Epic Capabilities</strong> — data management, project delivery, advisory, managed services</span></label>
+                </div>
+            </div>
+
+            <hr class="field-divider">
+
+            <div class="field-group">
+                <label class="field-label">Any services we're missing?</label>
+                <textarea class="form-textarea" name="missing_services" placeholder="e.g. Revenue Cycle Management, Compliance Consulting, etc."></textarea>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Should each service have its own dedicated page?</label>
+                <span class="field-hint">Right now everything is on one Services page. We can break them into individual pages like CSI Companies does.</span>
+                <div class="radio-group">
+                    <div class="radio-pill"><input type="radio" name="service_pages" id="sp1" value="keep"><label for="sp1">Keep as one page</label></div>
+                    <div class="radio-pill"><input type="radio" name="service_pages" id="sp2" value="separate"><label for="sp2">Separate pages</label></div>
+                    <div class="radio-pill"><input type="radio" name="service_pages" id="sp3" value="hybrid"><label for="sp3">Mix (big ones get pages)</label></div>
+                    <div class="radio-pill"><input type="radio" name="service_pages" id="sp4" value="unsure"><label for="sp4">Not sure yet</label></div>
+                </div>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Do you want a dropdown mega-menu under "Services" in the navigation?</label>
+                <div class="radio-group">
+                    <div class="radio-pill"><input type="radio" name="mega_menu" id="mm1" value="yes"><label for="mm1">Yes</label></div>
+                    <div class="radio-pill"><input type="radio" name="mega_menu" id="mm2" value="no"><label for="mm2">No, keep it simple</label></div>
+                    <div class="radio-pill"><input type="radio" name="mega_menu" id="mm3" value="unsure"><label for="mm3">Show me a mockup first</label></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: Testimonials & Proof -->
+        <div class="section-card" data-section="3">
+            <div class="section-number">3</div>
+            <h2 class="section-title">Testimonials & Social Proof</h2>
+            <p class="section-desc">The homepage currently has 5 placeholder testimonials using titles only (no names). We need real quotes or your approval to keep these.</p>
+
+            <div class="field-group">
+                <label class="field-label">Do you have real client testimonials we can use?</label>
+                <div class="radio-group">
+                    <div class="radio-pill"><input type="radio" name="has_testimonials" id="ht1" value="yes"><label for="ht1">Yes, I'll provide them</label></div>
+                    <div class="radio-pill"><input type="radio" name="has_testimonials" id="ht2" value="placeholders"><label for="ht2">Use the current placeholders</label></div>
+                    <div class="radio-pill"><input type="radio" name="has_testimonials" id="ht3" value="remove"><label for="ht3">Remove testimonials</label></div>
+                </div>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">If yes, paste them here (name, title, company, and quote)</label>
+                <textarea class="form-textarea" name="testimonials_text" rows="8" placeholder='e.g.&#10;"JBI staffed our entire Wave 2 go-live in under three weeks."&#10;— Jane Smith, VP of Clinical Informatics, Mount Sinai'></textarea>
+            </div>
+
+            <hr class="field-divider">
+
+            <div class="field-group">
+                <label class="field-label">Can we name-drop these health systems on the site?</label>
+                <span class="field-hint">Check the ones we have permission to reference publicly.</span>
+                <div class="check-group">
+                    <label class="check-item"><input type="checkbox" name="logo_northwell"><span>Northwell Health</span></label>
+                    <label class="check-item"><input type="checkbox" name="logo_sinai"><span>Mount Sinai</span></label>
+                    <label class="check-item"><input type="checkbox" name="logo_nyu"><span>NYU Langone</span></label>
+                    <label class="check-item"><input type="checkbox" name="logo_montefiore"><span>Montefiore</span></label>
+                    <label class="check-item"><input type="checkbox" name="logo_rwj"><span>RWJBarnabas Health</span></label>
+                </div>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Other clients we can list?</label>
+                <input type="text" class="form-input" name="other_clients" placeholder="Separate with commas">
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Do you have any case studies with measurable outcomes?</label>
+                <span class="field-hint">e.g. "Deployed 40 trainers in 3 weeks, resulting in 98% on-time go-live"</span>
+                <textarea class="form-textarea" name="case_studies" placeholder="Describe any projects with specific numbers, timelines, or results we can feature."></textarea>
+            </div>
+        </div>
+
+        <!-- Section 4: Branding -->
+        <div class="section-card" data-section="4">
+            <div class="section-number">4</div>
+            <h2 class="section-title">Branding & Visuals</h2>
+            <p class="section-desc">Quick check on the visual identity.</p>
+
+            <div class="field-group">
+                <label class="field-label">Is the current logo on the site correct?</label>
+                <div class="radio-group">
+                    <div class="radio-pill"><input type="radio" name="logo_correct" id="lc1" value="yes"><label for="lc1">Yes, it's correct</label></div>
+                    <div class="radio-pill"><input type="radio" name="logo_correct" id="lc2" value="no"><label for="lc2">No, I'll send a new one</label></div>
+                    <div class="radio-pill"><input type="radio" name="logo_correct" id="lc3" value="update"><label for="lc3">Needs minor update</label></div>
+                </div>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Brand colors — happy with the navy (#0B213F) and teal (#2EC4B6)?</label>
+                <div style="display:flex;gap:8px;margin-bottom:12px;">
+                    <div style="width:40px;height:40px;border-radius:8px;background:#0B213F;border:2px solid #ddd;"></div>
+                    <div style="width:40px;height:40px;border-radius:8px;background:#2EC4B6;border:2px solid #ddd;"></div>
+                </div>
+                <div class="radio-group">
+                    <div class="radio-pill"><input type="radio" name="colors_ok" id="co1" value="yes"><label for="co1">Yes, keep them</label></div>
+                    <div class="radio-pill"><input type="radio" name="colors_ok" id="co2" value="change"><label for="co2">Change them</label></div>
+                </div>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">If changing, what colors do you prefer?</label>
+                <input type="text" class="form-input" name="preferred_colors" placeholder="e.g. darker blue, gold accent, or send us hex codes">
+            </div>
+
+            <hr class="field-divider">
+
+            <div class="field-group">
+                <label class="field-label">Do you have real team/office photos we can use?</label>
+                <div class="radio-group">
+                    <div class="radio-pill"><input type="radio" name="has_photos" id="hp1" value="yes"><label for="hp1">Yes, I'll send them</label></div>
+                    <div class="radio-pill"><input type="radio" name="has_photos" id="hp2" value="stock"><label for="hp2">Keep stock photos</label></div>
+                    <div class="radio-pill"><input type="radio" name="has_photos" id="hp3" value="schedule"><label for="hp3">Let's schedule a shoot</label></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 5: Forms & Operations -->
+        <div class="section-card" data-section="5">
+            <div class="section-number">5</div>
+            <h2 class="section-title">Forms & Operations</h2>
+            <p class="section-desc">The contact and intake forms need to be connected to your email.</p>
+
+            <div class="field-group">
+                <label class="field-label">What email should form submissions go to?</label>
+                <input type="text" class="form-input" name="form_email" placeholder="e.g. info@jbisoftware.com">
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Should submissions also go to a second person?</label>
+                <input type="text" class="form-input" name="form_email_cc" placeholder="e.g. bd@jbisoftware.com (optional)">
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Have you set up the Power Automate flows yet?</label>
+                <span class="field-hint">We sent a step-by-step guide (SETUP-GUIDE.md in the repo).</span>
+                <div class="radio-group">
+                    <div class="radio-pill"><input type="radio" name="pa_setup" id="pa1" value="done"><label for="pa1">Done</label></div>
+                    <div class="radio-pill"><input type="radio" name="pa_setup" id="pa2" value="need_help"><label for="pa2">Need help</label></div>
+                    <div class="radio-pill"><input type="radio" name="pa_setup" id="pa3" value="havent_started"><label for="pa3">Haven't started</label></div>
+                </div>
+            </div>
+
+            <hr class="field-divider">
+
+            <div class="field-group">
+                <label class="field-label">Job board — do you want to connect it to an ATS?</label>
+                <span class="field-hint">Right now job listings are manually coded. We can integrate with Greenhouse, Lever, Workday, etc.</span>
+                <div class="radio-group">
+                    <div class="radio-pill"><input type="radio" name="ats" id="ats1" value="manual"><label for="ats1">Keep manual</label></div>
+                    <div class="radio-pill"><input type="radio" name="ats" id="ats2" value="integrate"><label for="ats2">Integrate with ATS</label></div>
+                    <div class="radio-pill"><input type="radio" name="ats" id="ats3" value="later"><label for="ats3">Later</label></div>
+                </div>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">If integrating, which ATS do you use?</label>
+                <input type="text" class="form-input" name="ats_name" placeholder="e.g. Greenhouse, Lever, Workday, Bullhorn, etc.">
+            </div>
+        </div>
+
+        <!-- Section 6: Domain & Launch -->
+        <div class="section-card" data-section="6">
+            <div class="section-number">6</div>
+            <h2 class="section-title">Domain & Launch</h2>
+            <p class="section-desc">Getting the site live on your domain.</p>
+
+            <div class="field-group">
+                <label class="field-label">Where is staffing.jbisoftware.com currently hosted?</label>
+                <input type="text" class="form-input" name="current_host" placeholder="e.g. GoDaddy, AWS, Cloudflare, not sure">
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Are you ready to point the domain to the new site?</label>
+                <div class="radio-group">
+                    <div class="radio-pill"><input type="radio" name="domain_ready" id="dr1" value="yes"><label for="dr1">Yes, let's do it</label></div>
+                    <div class="radio-pill"><input type="radio" name="domain_ready" id="dr2" value="after_review"><label for="dr2">After final review</label></div>
+                    <div class="radio-pill"><input type="radio" name="domain_ready" id="dr3" value="not_yet"><label for="dr3">Not yet</label></div>
+                </div>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Do you have a Google Analytics ID?</label>
+                <input type="text" class="form-input" name="ga_id" placeholder="e.g. G-XXXXXXXXXX">
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Any legal disclaimers, compliance copy, or terms pages needed?</label>
+                <textarea class="form-textarea" name="legal" placeholder="e.g. EEO statement, privacy policy, HIPAA disclaimer, etc."></textarea>
+            </div>
+        </div>
+
+        <!-- Section 7: Page-by-Page Review -->
+        <div class="section-card" data-section="7">
+            <div class="section-number">7</div>
+            <h2 class="section-title">Page-by-Page Review</h2>
+            <p class="section-desc">Rate each page 1-5 and leave notes on what needs to change. 1 = needs a complete redo, 5 = ship it.</p>
+
+            <table class="page-review-table">
+                <thead>
+                    <tr>
+                        <th>Page</th>
+                        <th style="width:140px;">Rating (1-5)</th>
+                        <th>Notes / what to change</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="page-name">Homepage</td>
+                        <td>
+                            <div class="rating-pills">
+                                <div><input type="radio" name="rate_home" id="rh1" value="1"><label for="rh1">1</label></div>
+                                <div><input type="radio" name="rate_home" id="rh2" value="2"><label for="rh2">2</label></div>
+                                <div><input type="radio" name="rate_home" id="rh3" value="3"><label for="rh3">3</label></div>
+                                <div><input type="radio" name="rate_home" id="rh4" value="4"><label for="rh4">4</label></div>
+                                <div><input type="radio" name="rate_home" id="rh5" value="5"><label for="rh5">5</label></div>
+                            </div>
+                        </td>
+                        <td><input type="text" name="notes_home" placeholder="What should change?"></td>
+                    </tr>
+                    <tr>
+                        <td class="page-name">Services</td>
+                        <td>
+                            <div class="rating-pills">
+                                <div><input type="radio" name="rate_services" id="rs1" value="1"><label for="rs1">1</label></div>
+                                <div><input type="radio" name="rate_services" id="rs2" value="2"><label for="rs2">2</label></div>
+                                <div><input type="radio" name="rate_services" id="rs3" value="3"><label for="rs3">3</label></div>
+                                <div><input type="radio" name="rate_services" id="rs4" value="4"><label for="rs4">4</label></div>
+                                <div><input type="radio" name="rate_services" id="rs5" value="5"><label for="rs5">5</label></div>
+                            </div>
+                        </td>
+                        <td><input type="text" name="notes_services" placeholder="What should change?"></td>
+                    </tr>
+                    <tr>
+                        <td class="page-name">Epic</td>
+                        <td>
+                            <div class="rating-pills">
+                                <div><input type="radio" name="rate_epic" id="re1" value="1"><label for="re1">1</label></div>
+                                <div><input type="radio" name="rate_epic" id="re2" value="2"><label for="re2">2</label></div>
+                                <div><input type="radio" name="rate_epic" id="re3" value="3"><label for="re3">3</label></div>
+                                <div><input type="radio" name="rate_epic" id="re4" value="4"><label for="re4">4</label></div>
+                                <div><input type="radio" name="rate_epic" id="re5" value="5"><label for="re5">5</label></div>
+                            </div>
+                        </td>
+                        <td><input type="text" name="notes_epic" placeholder="What should change?"></td>
+                    </tr>
+                    <tr>
+                        <td class="page-name">Jobs</td>
+                        <td>
+                            <div class="rating-pills">
+                                <div><input type="radio" name="rate_jobs" id="rj1" value="1"><label for="rj1">1</label></div>
+                                <div><input type="radio" name="rate_jobs" id="rj2" value="2"><label for="rj2">2</label></div>
+                                <div><input type="radio" name="rate_jobs" id="rj3" value="3"><label for="rj3">3</label></div>
+                                <div><input type="radio" name="rate_jobs" id="rj4" value="4"><label for="rj4">4</label></div>
+                                <div><input type="radio" name="rate_jobs" id="rj5" value="5"><label for="rj5">5</label></div>
+                            </div>
+                        </td>
+                        <td><input type="text" name="notes_jobs" placeholder="What should change?"></td>
+                    </tr>
+                    <tr>
+                        <td class="page-name">About</td>
+                        <td>
+                            <div class="rating-pills">
+                                <div><input type="radio" name="rate_about" id="ra1" value="1"><label for="ra1">1</label></div>
+                                <div><input type="radio" name="rate_about" id="ra2" value="2"><label for="ra2">2</label></div>
+                                <div><input type="radio" name="rate_about" id="ra3" value="3"><label for="ra3">3</label></div>
+                                <div><input type="radio" name="rate_about" id="ra4" value="4"><label for="ra4">4</label></div>
+                                <div><input type="radio" name="rate_about" id="ra5" value="5"><label for="ra5">5</label></div>
+                            </div>
+                        </td>
+                        <td><input type="text" name="notes_about" placeholder="What should change?"></td>
+                    </tr>
+                    <tr>
+                        <td class="page-name">Contact</td>
+                        <td>
+                            <div class="rating-pills">
+                                <div><input type="radio" name="rate_contact" id="rc1" value="1"><label for="rc1">1</label></div>
+                                <div><input type="radio" name="rate_contact" id="rc2" value="2"><label for="rc2">2</label></div>
+                                <div><input type="radio" name="rate_contact" id="rc3" value="3"><label for="rc3">3</label></div>
+                                <div><input type="radio" name="rate_contact" id="rc4" value="4"><label for="rc4">4</label></div>
+                                <div><input type="radio" name="rate_contact" id="rc5" value="5"><label for="rc5">5</label></div>
+                            </div>
+                        </td>
+                        <td><input type="text" name="notes_contact" placeholder="What should change?"></td>
+                    </tr>
+                    <tr>
+                        <td class="page-name">Intake Form</td>
+                        <td>
+                            <div class="rating-pills">
+                                <div><input type="radio" name="rate_intake" id="ri1" value="1"><label for="ri1">1</label></div>
+                                <div><input type="radio" name="rate_intake" id="ri2" value="2"><label for="ri2">2</label></div>
+                                <div><input type="radio" name="rate_intake" id="ri3" value="3"><label for="ri3">3</label></div>
+                                <div><input type="radio" name="rate_intake" id="ri4" value="4"><label for="ri4">4</label></div>
+                                <div><input type="radio" name="rate_intake" id="ri5" value="5"><label for="ri5">5</label></div>
+                            </div>
+                        </td>
+                        <td><input type="text" name="notes_intake" placeholder="What should change?"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Section 8: Content & Tone -->
+        <div class="section-card" data-section="8">
+            <div class="section-number">8</div>
+            <h2 class="section-title">Content & Tone</h2>
+            <p class="section-desc">The site copy was written conversationally on purpose — less corporate, more direct. Let us know if that works.</p>
+
+            <div class="field-group">
+                <label class="field-label">How does the overall tone feel?</label>
+                <div class="radio-group">
+                    <div class="radio-pill"><input type="radio" name="tone" id="t1" value="too_casual"><label for="t1">Too casual</label></div>
+                    <div class="radio-pill"><input type="radio" name="tone" id="t2" value="just_right"><label for="t2">Just right</label></div>
+                    <div class="radio-pill"><input type="radio" name="tone" id="t3" value="too_formal"><label for="t3">Too formal</label></div>
+                    <div class="radio-pill"><input type="radio" name="tone" id="t4" value="mixed"><label for="t4">Mixed — some good, some off</label></div>
+                </div>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Is anything factually wrong on the site?</label>
+                <textarea class="form-textarea" name="factual_errors" placeholder="List anything that's inaccurate — wrong numbers, wrong services, incorrect descriptions, etc."></textarea>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Any specific phrases or wording you want changed?</label>
+                <textarea class="form-textarea" name="wording_changes" placeholder='e.g. "Don\'t say \'we move fast\' — say \'we deliver on time\'" or "Remove the line about 3am command center"'></textarea>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">What's the #1 thing you want someone to do after visiting the site?</label>
+                <div class="radio-group">
+                    <div class="radio-pill"><input type="radio" name="primary_cta" id="cta1" value="contact"><label for="cta1">Contact us</label></div>
+                    <div class="radio-pill"><input type="radio" name="primary_cta" id="cta2" value="apply"><label for="cta2">Apply for a job</label></div>
+                    <div class="radio-pill"><input type="radio" name="primary_cta" id="cta3" value="call"><label for="cta3">Call us</label></div>
+                    <div class="radio-pill"><input type="radio" name="primary_cta" id="cta4" value="learn"><label for="cta4">Learn about services</label></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 9: Final Thoughts -->
+        <div class="section-card" data-section="9">
+            <div class="section-number">9</div>
+            <h2 class="section-title">Final Thoughts</h2>
+            <p class="section-desc">Anything else on your mind.</p>
+
+            <div class="field-group">
+                <label class="field-label">What do you like most about the current site?</label>
+                <textarea class="form-textarea" name="likes" placeholder="What's working well?"></textarea>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">What's your biggest concern?</label>
+                <textarea class="form-textarea" name="concerns" placeholder="What worries you about going live?"></textarea>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Any websites you've seen that you want JBI's site to feel like?</label>
+                <span class="field-hint">Paste URLs or describe what you like about them.</span>
+                <textarea class="form-textarea" name="inspiration" placeholder="e.g. csicompanies.com — I like their Solutions dropdown and service page layout"></textarea>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Target launch date</label>
+                <div class="radio-group">
+                    <div class="radio-pill"><input type="radio" name="launch" id="la1" value="asap"><label for="la1">ASAP</label></div>
+                    <div class="radio-pill"><input type="radio" name="launch" id="la2" value="2_weeks"><label for="la2">2 weeks</label></div>
+                    <div class="radio-pill"><input type="radio" name="launch" id="la3" value="month"><label for="la3">1 month</label></div>
+                    <div class="radio-pill"><input type="radio" name="launch" id="la4" value="no_rush"><label for="la4">No rush</label></div>
+                </div>
+            </div>
+
+            <div class="field-group">
+                <label class="field-label">Anything else?</label>
+                <textarea class="form-textarea" name="anything_else" rows="6" placeholder="Open floor — tell us what's on your mind."></textarea>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Action Bar -->
+    <div class="action-bar no-print">
+        <div class="action-inner">
+            <span class="action-hint">Your answers auto-save in this browser. Download PDF when ready.</span>
+            <div class="action-buttons">
+                <button class="btn-wwa btn-save" onclick="saveToLocal()">Save Draft</button>
+                <button class="btn-wwa btn-download" onclick="downloadPDF()">Download PDF</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Set today's date
+        document.getElementById('todayDate').textContent = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+
+        // Progress tracking
+        function updateProgress() {
+            const allInputs = document.querySelectorAll('input[type="text"], textarea, select');
+            const allRadios = document.querySelectorAll('input[type="radio"]');
+            const radioGroups = new Set();
+            allRadios.forEach(r => radioGroups.add(r.name));
+
+            let filled = 0;
+            let total = allInputs.length + radioGroups.size;
+
+            allInputs.forEach(input => {
+                if (input.value.trim()) filled++;
+            });
+            radioGroups.forEach(name => {
+                if (document.querySelector(`input[name="${name}"]:checked`)) filled++;
+            });
+
+            const pct = Math.round((filled / total) * 100);
+            document.getElementById('progressFill').style.width = pct + '%';
+            document.getElementById('progressLabel').textContent = pct + '% complete';
+        }
+
+        document.querySelectorAll('input, textarea, select').forEach(el => {
+            el.addEventListener('input', updateProgress);
+            el.addEventListener('change', updateProgress);
+        });
+
+        // Auto-save to localStorage
+        function saveToLocal() {
+            const data = {};
+            document.querySelectorAll('input, textarea, select').forEach(el => {
+                if (el.type === 'radio') {
+                    if (el.checked) data[el.name] = el.value;
+                } else if (el.type === 'checkbox') {
+                    data[el.name] = el.checked;
+                } else {
+                    if (el.name) data[el.name] = el.value;
+                }
+            });
+            localStorage.setItem('jbi_questionnaire', JSON.stringify(data));
+            // Flash the button
+            const btn = document.querySelector('.btn-save');
+            btn.textContent = 'Saved!';
+            setTimeout(() => btn.textContent = 'Save Draft', 1500);
+        }
+
+        // Restore from localStorage
+        function restoreFromLocal() {
+            const saved = localStorage.getItem('jbi_questionnaire');
+            if (!saved) return;
+            const data = JSON.parse(saved);
+            for (const [key, val] of Object.entries(data)) {
+                const el = document.querySelector(`[name="${key}"]`);
+                if (!el) continue;
+                if (el.type === 'radio') {
+                    const radio = document.querySelector(`input[name="${key}"][value="${val}"]`);
+                    if (radio) radio.checked = true;
+                } else if (el.type === 'checkbox') {
+                    el.checked = val;
+                } else {
+                    el.value = val;
+                }
+            }
+            updateProgress();
+        }
+        restoreFromLocal();
+
+        // Auto-save every 30 seconds
+        setInterval(saveToLocal, 30000);
+
+        // Download as PDF (using browser print)
+        function downloadPDF() {
+            saveToLocal();
+            window.print();
+        }
+
+        // Initial progress
+        updateProgress();
+    </script>
+</body>
+</html>
