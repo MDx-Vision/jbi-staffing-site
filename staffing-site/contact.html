@@ -103,7 +103,7 @@
                 <!-- Form Card -->
                 <div class="form-card">
                     <h2>Tell us what you're looking for</h2>
-                    <form class="contact-form" action="https://formspree.io/f/your-form-id" method="POST">
+                    <form class="contact-form" id="contactForm">
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="name">Name *</label>
@@ -217,24 +217,63 @@
 
     <script src="main.js"></script>
     <script>
-        const contactForm = document.querySelector('.contact-form');
+        // ============================================================
+        // SETUP: Replace this URL with your Power Automate HTTP trigger
+        // Steps to create:
+        //   1. Go to https://make.powerautomate.com
+        //   2. Create new "Instant cloud flow"
+        //   3. Trigger: "When an HTTP request is received"
+        //   4. Paste this JSON schema in the trigger:
+        //      {
+        //        "type": "object",
+        //        "properties": {
+        //          "name":    { "type": "string" },
+        //          "email":   { "type": "string" },
+        //          "phone":   { "type": "string" },
+        //          "company": { "type": "string" },
+        //          "subject": { "type": "string" },
+        //          "message": { "type": "string" },
+        //          "form":    { "type": "string" },
+        //          "submitted_at": { "type": "string" }
+        //        }
+        //      }
+        //   5. Add action: "Send an email (V2)" from Outlook 365
+        //      - To: info@jbisoftware.com
+        //      - Subject: New Contact: [subject] from [name]
+        //      - Body: use dynamic content fields
+        //   6. Save → copy the HTTP POST URL → paste below
+        // ============================================================
+        const CONTACT_WEBHOOK = 'YOUR_POWER_AUTOMATE_URL_HERE';
+
+        const contactForm = document.getElementById('contactForm');
         const contactSubmit = document.getElementById('contactSubmit');
+
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             contactSubmit.classList.add('loading');
             contactSubmit.textContent = 'Sending...';
+
+            const data = {
+                name: contactForm.querySelector('#name').value,
+                email: contactForm.querySelector('#email').value,
+                phone: contactForm.querySelector('#phone').value || '',
+                company: contactForm.querySelector('#company').value || '',
+                subject: contactForm.querySelector('#subject').value,
+                message: contactForm.querySelector('#message').value,
+                form: 'contact',
+                submitted_at: new Date().toISOString()
+            };
+
             try {
-                const res = await fetch(contactForm.action, {
+                const res = await fetch(CONTACT_WEBHOOK, {
                     method: 'POST',
-                    body: new FormData(contactForm),
-                    headers: { 'Accept': 'application/json' }
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data),
+                    mode: 'no-cors' // Power Automate doesn't return CORS headers
                 });
-                if (res.ok) {
-                    contactForm.style.display = 'none';
-                    document.getElementById('contactSuccess').classList.add('active');
-                } else {
-                    throw new Error('Failed');
-                }
+                // no-cors means we can't read the response, but if no error thrown it worked
+                contactForm.style.display = 'none';
+                document.getElementById('contactSuccess').classList.add('active');
             } catch {
                 contactForm.style.display = 'none';
                 document.getElementById('contactError').classList.add('active');

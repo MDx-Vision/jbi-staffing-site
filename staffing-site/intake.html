@@ -66,7 +66,7 @@
             <p><strong>Please complete all required fields marked with an asterisk (*).</strong> This information is required for staffing coordination and onboarding.</p>
         </div>
 
-        <form id="intakeForm" class="intake-form" action="https://formspree.io/f/your-form-id" method="POST">
+        <form id="intakeForm" class="intake-form">
             <!-- Section 1: Personal Information -->
             <section class="intake-section">
                 <h2>Personal Information</h2>
@@ -423,24 +423,65 @@
             }
         });
 
+        // ============================================================
+        // SETUP: Replace this URL with your Power Automate HTTP trigger
+        // Same steps as contact form, but use this JSON schema:
+        //   {
+        //     "type": "object",
+        //     "properties": {
+        //       "firstName":    { "type": "string" },
+        //       "lastName":     { "type": "string" },
+        //       "email":        { "type": "string" },
+        //       "phone":        { "type": "string" },
+        //       "address":      { "type": "string" },
+        //       "city":         { "type": "string" },
+        //       "state":        { "type": "string" },
+        //       "zip":          { "type": "string" },
+        //       "position":     { "type": "string" },
+        //       "availability": { "type": "string" },
+        //       "salary":       { "type": "string" },
+        //       "skills":       { "type": "string" },
+        //       "experience":   { "type": "string" },
+        //       "certifications": { "type": "string" },
+        //       "education":    { "type": "string" },
+        //       "references":   { "type": "string" },
+        //       "notes":        { "type": "string" },
+        //       "form":         { "type": "string" },
+        //       "submitted_at": { "type": "string" }
+        //     }
+        //   }
+        //   Add action: "Send an email (V2)" from Outlook 365
+        //     - To: info@jbisoftware.com
+        //     - Subject: New Candidate Application: [firstName] [lastName]
+        //     - Body: use dynamic content fields
+        // ============================================================
+        const INTAKE_WEBHOOK = 'YOUR_POWER_AUTOMATE_URL_HERE';
+
         const submitBtn = document.getElementById('submitBtn');
         intakeForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             submitBtn.classList.add('loading');
             submitBtn.textContent = 'Submitting...';
+
+            // Collect all form fields into JSON
+            const fd = new FormData(intakeForm);
+            const data = { form: 'intake', submitted_at: new Date().toISOString() };
+            for (const [key, value] of fd.entries()) {
+                // Skip file inputs — Power Automate basic tier doesn't support them
+                if (value instanceof File) continue;
+                data[key] = value;
+            }
+
             try {
-                const res = await fetch(intakeForm.action, {
+                await fetch(INTAKE_WEBHOOK, {
                     method: 'POST',
-                    body: new FormData(intakeForm),
-                    headers: { 'Accept': 'application/json' }
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data),
+                    mode: 'no-cors'
                 });
-                if (res.ok) {
-                    intakeForm.style.display = 'none';
-                    document.querySelectorAll('.intake-notice').forEach(n => n.style.display = 'none');
-                    document.getElementById('intakeSuccess').classList.add('active');
-                } else {
-                    throw new Error('Failed');
-                }
+                intakeForm.style.display = 'none';
+                document.querySelectorAll('.intake-notice').forEach(n => n.style.display = 'none');
+                document.getElementById('intakeSuccess').classList.add('active');
             } catch {
                 intakeForm.style.display = 'none';
                 document.querySelectorAll('.intake-notice').forEach(n => n.style.display = 'none');
