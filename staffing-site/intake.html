@@ -25,8 +25,17 @@
         <div class="container">
             <a href="index.html" class="logo"><img src="logo-nav-brand.png" alt="JBISOFTWARE, INC" loading="lazy"></a>
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="services.html">Services</a></li>
+                <li class="nav-dropdown-trigger">
+                    <a href="services.html">Services</a>
+                    <div class="nav-dropdown">
+                        <a href="services.html#it-staffing"><div class="dd-icon">&#128187;</div><div><div class="dd-label">IT Staffing</div><div class="dd-desc">Engineers, devs, DBAs, help desk</div></div></a>
+                        <a href="services.html#healthcare-it"><div class="dd-icon">&#127973;</div><div><div class="dd-label">Healthcare IT</div><div class="dd-desc">Epic, Cerner, Meditech analysts</div></div></a>
+                        <a href="services.html#clinical-staffing"><div class="dd-icon">&#129657;</div><div><div class="dd-label">Clinical Staffing</div><div class="dd-desc">Physicians, nurses, allied health</div></div></a>
+                        <a href="software.html"><div class="dd-icon">&#128296;</div><div><div class="dd-label">Software Development</div><div class="dd-desc">AI, full-stack, mobile apps</div></div></a>
+                        <a href="tws.html"><div class="dd-icon">&#127760;</div><div><div class="dd-label">TWS Translation</div><div class="dd-desc">Patented multilingual platform</div></div></a>
+                        <a href="kliks.html"><div class="dd-icon">&#129302;</div><div><div class="dd-label">Kliks AI</div><div class="dd-desc">AI-powered helpdesk platform</div></div></a>
+                    </div>
+                </li>
                 <li><a href="epic.html">Epic</a></li>
                 <li><a href="jobs.html">Jobs</a></li>
                 <li><a href="about.html">About</a></li>
@@ -42,12 +51,22 @@
     </nav>
     <div class="mobile-nav" id="mobileNav">
         <a href="index.html">Home</a>
-        <a href="services.html">Services</a>
+        <div>
+            <a href="services.html" class="mobile-nav-toggle" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open');return false;">Services</a>
+            <div class="mobile-nav-accordion">
+                <a href="services.html#it-staffing">IT Staffing</a>
+                <a href="services.html#healthcare-it">Healthcare IT</a>
+                <a href="services.html#clinical-staffing">Clinical Staffing</a>
+                <a href="software.html">Software Development</a>
+                <a href="tws.html">TWS Translation</a>
+                <a href="kliks.html">Kliks AI</a>
+            </div>
+        </div>
         <a href="epic.html">Epic</a>
         <a href="jobs.html">Jobs</a>
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
-        <a href="intake.html" class="active">Intake Form</a>
+        <a href="intake.html">Intake Form</a>
         <a href="contact.html" class="btn btn-primary" style="margin-top:16px;text-align:center;">Get Started</a>
     </div>
 
@@ -374,7 +393,7 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <div class="logo"><img src="logo-nav-brand.png" alt="JBISOFTWARE, INC" loading="lazy"></div>
-                    <p>Premier staffing firm specializing in IT, healthcare IT, and clinical workforce solutions with 15+ years of proven experience.</p>
+                    <p>Premier provider of healthcare IT solutions, staffing, software development, and translation services since 2014.</p>
                 </div>
                 <div>
                     <h4>Quick Links</h4>
@@ -382,17 +401,19 @@
                         <li><a href="index.html">Home</a></li>
                         <li><a href="services.html">Services</a></li>
                         <li><a href="jobs.html">Jobs</a></li>
+                        <li><a href="epic.html">Epic</a></li>
                         <li><a href="about.html">About</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4>Services</h4>
+                    <h4>Solutions</h4>
                     <ul class="footer-links">
-                        <li><a href="services.html#it-staffing">IT Staffing</a></li>
-                        <li><a href="services.html#healthcare-it">Healthcare IT</a></li>
-                        <li><a href="services.html#clinical-staffing">Clinical Staffing</a></li>
-                        <li><a href="services.html#staffing-models">Staffing Models</a></li>
+                        <li><a href="software.html">Software Development</a></li>
+                        <li><a href="tws.html">TWS Translation</a></li>
+                        <li><a href="kliks.html">Kliks AI</a></li>
+                        <li><a href="epic.html">Epic Services</a></li>
+                        <li><a href="intake.html">Join Our Network</a></li>
                     </ul>
                 </div>
                 <div>

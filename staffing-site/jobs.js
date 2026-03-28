@@ -60,12 +60,12 @@ const DEMO_JOBS = [
         posted: '2026-03-20'
     },
     {
-        title: 'Epic Radiant/Cardiant Analyst',
+        title: 'Epic Radiant/Cupid Analyst',
         department: 'Healthcare IT',
         location: 'Boston, MA',
         type: 'Contract-to-Hire',
-        description: 'Configure and optimize Epic Radiant and Cardiant modules for a multi-site academic medical center. Partner with radiology and cardiology departments on workflow design, order management, and result routing. Support ongoing optimization post-go-live.',
-        requirements: '- Epic Radiant or Cardiant certification required\n- 2+ years in a clinical IT analyst role\n- Understanding of radiology/cardiology workflows\n- Experience with HL7 result interfaces a plus',
+        description: 'Configure and optimize Epic Radiant and Cupid modules for a multi-site academic medical center. Partner with radiology and cardiology departments on workflow design, order management, and result routing. Support ongoing optimization post-go-live.',
+        requirements: '- Epic Radiant or Cupid certification required\n- 2+ years in a clinical IT analyst role\n- Understanding of radiology/cardiology workflows\n- Experience with HL7 result interfaces a plus',
         posted: '2026-03-22'
     },
     {
@@ -76,6 +76,134 @@ const DEMO_JOBS = [
         description: 'Support our patented Translation Worldwide Solution platform by providing real-time interpretation services for healthcare facilities. Work remotely with hospitals and clinics across the country to ensure clear provider-patient communication.',
         requirements: '- Fluent in English and at least one additional language\n- Medical interpretation certification preferred\n- Experience in healthcare settings\n- Strong internet connection and quiet workspace',
         posted: '2026-03-12'
+    },
+    // ── Northwell Health Positions ──
+    {
+        title: 'Epic Prelude Lead',
+        department: 'Healthcare IT',
+        location: 'New York, NY (On-site)',
+        type: 'Contract',
+        description: 'Implements and supports scheduling and patient access workflows in the Cadence module for Northwell Health. Duties include template design, configuration of rules, and testing system functionality. On-site required 5/30 through 6/30.',
+        requirements: '- Epic Cadence & Prelude certification required\n- Healthcare scheduling experience\n- Available for on-site work 5/30–6/30',
+        posted: '2026-03-25'
+    },
+    {
+        title: 'Principal Trainer — Epic Cadence/Prelude',
+        department: 'Healthcare IT',
+        location: 'Remote / On-site for Go-Live',
+        type: 'Contract',
+        description: 'Develops the EMR training curriculum, overall training strategy, and creates and maintains the training environment for Northwell Health. Responsible for administering the EMR credentialing program to end-user trainers and evaluating their ability to conduct training programs.',
+        requirements: '- Epic Cadence & Prelude certification required\n- Experience developing EMR training curricula\n- On-site availability for go-live events',
+        posted: '2026-03-25'
+    },
+    {
+        title: 'Mobile Deployment Technician — Epic Wave 2',
+        department: 'Healthcare IT',
+        location: 'New York, NY (On-site)',
+        type: 'Contract',
+        description: 'Assist with Rover deployments for Epic Wave 2 at Northwell Health — deploying phones, docks for shared devices, and charging cabinet demonstrations. Provide first-line end user support for mobile device issues and hands-on support for device depot operations.',
+        requirements: '- High School Diploma or equivalent required\n- 0–2 years of relevant experience\n- Basic familiarity with mobile devices (iOS, Android)\n- Ability to work on-site',
+        posted: '2026-03-25'
+    },
+    {
+        title: 'Epic Module Analyst',
+        department: 'Healthcare IT',
+        location: 'New York, NY',
+        type: 'Contract',
+        description: 'Specializes in a specific Epic module (e.g., Orders, Cadence, Ambulatory) for Northwell Health. Responsible for system configuration, workflow design, unit testing, and end-user support during implementation and optimization phases.',
+        requirements: '- Epic module certification required\n- Analytical and problem-solving skills\n- Experience with system configuration and workflow design',
+        posted: '2026-03-25'
+    },
+    {
+        title: 'Epic Project Manager — IT Security',
+        department: 'Healthcare IT',
+        location: 'New York, NY (Hybrid)',
+        type: 'Contract',
+        description: 'Plan and implement security measures to protect computer systems, networks, and data for Northwell Health Epic environment. Assess risks, identify potential security breaches, prioritize security coverage, and ensure compliance with relevant information security laws and regulations.',
+        requirements: '- Solid understanding of complex IT systems\n- Current knowledge of security standards, systems, and authentication protocols\n- Experience building secure, compliant IT environments\n- Epic experience preferred',
+        posted: '2026-03-25'
+    },
+    {
+        title: 'Epic Lumens Analyst',
+        department: 'Healthcare IT',
+        location: 'New York, NY',
+        type: 'Contract',
+        description: 'Implementation, optimization, and ongoing support of the Epic Lumens application for Northwell Health, ensuring it meets the needs of Endoscopy and Gastroenterology workflows. Works closely with clinical leadership, physicians, nursing staff, and operational stakeholders.',
+        requirements: '- Epic Lumens certification or experience\n- Knowledge of endoscopy/gastroenterology workflows\n- Experience with procedural documentation and revenue cycle\n- System testing and validation experience',
+        posted: '2026-03-25'
+    },
+    {
+        title: 'Epic Prelude/Cadence Analyst',
+        department: 'Healthcare IT',
+        location: 'New York, NY',
+        type: 'Contract',
+        description: 'Configure and maintain Epic Prelude and Cadence modules to support new clinic builds and operational workflows at Northwell Health. Support Community Connect initiatives by providing technical expertise and configuration support for partner organizations.',
+        requirements: '- Epic Prelude/Cadence certification required\n- Experience with department settings, provider templates, and work queues\n- Testing and quality assurance experience\n- Healthcare technology background',
+        posted: '2026-03-25'
+    },
+    {
+        title: 'Senior Project Manager — Epic Revenue Cycle',
+        department: 'Healthcare IT',
+        location: 'New York, NY (Hybrid)',
+        type: 'Contract',
+        description: 'Lead large, complex initiatives for Northwell Health, partnering with executives and cross-functional teams. Step into active leadership supporting Epic revenue-cycle applications and hospital billing workflows during multiple high-intensity go-live waves. Hybrid: 4 days on-site/month, full on-site mid-May through July and mid-October through year-end.',
+        requirements: '- Epic HB certification required\n- Epic Dorothy, PB, and SBO certifications preferred\n- Extensive experience managing large, cross-functional initiatives\n- Mastery of MS Project, PowerPoint, and Excel\n- Available through 12/31/2026',
+        posted: '2026-03-25'
+    },
+    // ── Internship Positions ──
+    {
+        title: 'IT Staffing Intern',
+        department: 'Internship',
+        location: 'New York, NY / Remote',
+        type: 'Internship',
+        description: 'Support the IT staffing team with candidate sourcing, screening, and coordination. Gain hands-on experience in technical recruiting, applicant tracking systems, and the staffing lifecycle in a fast-paced healthcare IT environment.',
+        requirements: '- Currently enrolled in a relevant degree program\n- Strong communication and organizational skills\n- Interest in IT staffing and recruiting\n- Familiarity with Microsoft Office',
+        posted: '2026-03-25'
+    },
+    {
+        title: 'Healthcare IT Intern',
+        department: 'Internship',
+        location: 'New York, NY / Remote',
+        type: 'Internship',
+        description: 'Assist the healthcare IT team with EHR implementation support, documentation, and project coordination. Learn about Epic, Cerner, and other healthcare information systems while contributing to real client engagements.',
+        requirements: '- Currently enrolled in Health Informatics, IT, or related program\n- Interest in healthcare technology\n- Detail-oriented with strong writing skills\n- Basic understanding of healthcare workflows a plus',
+        posted: '2026-03-25'
+    },
+    {
+        title: 'Software Development Intern',
+        department: 'Internship',
+        location: 'Remote',
+        type: 'Internship',
+        description: 'Join our in-house development team and contribute to real projects — building features, writing tests, and participating in code reviews. Work with React, Node.js, Python, and cloud platforms in a HIPAA-compliant environment.',
+        requirements: '- Currently enrolled in Computer Science or related program\n- Familiarity with JavaScript, Python, or similar\n- Basic understanding of web development (HTML/CSS/JS)\n- Eagerness to learn and contribute',
+        posted: '2026-03-25'
+    },
+    {
+        title: 'Social Media Management Intern',
+        department: 'Internship',
+        location: 'Remote',
+        type: 'Internship',
+        description: 'Help grow JBI Software\'s online presence across LinkedIn, Instagram, and other platforms. Create content, schedule posts, track engagement metrics, and support employer branding initiatives for our staffing division.',
+        requirements: '- Currently enrolled in Marketing, Communications, or related program\n- Experience with social media platforms and scheduling tools\n- Strong writing and visual storytelling skills\n- Basic design skills (Canva, Adobe) a plus',
+        posted: '2026-03-25'
+    },
+    {
+        title: 'Content Creation Intern',
+        department: 'Internship',
+        location: 'Remote',
+        type: 'Internship',
+        description: 'Write blog posts, case studies, and website copy that showcases JBI Software\'s expertise in healthcare IT staffing, software development, and Epic implementations. Help build a content library that drives SEO and brand awareness.',
+        requirements: '- Currently enrolled in English, Journalism, Marketing, or related program\n- Strong writing and editing skills\n- Interest in healthcare technology or B2B content\n- SEO awareness a plus',
+        posted: '2026-03-25'
+    },
+    {
+        title: 'Event Planning & Management Intern',
+        department: 'Internship',
+        location: 'New York, NY',
+        type: 'Internship',
+        description: 'Support planning and execution of JBI Software events — industry conferences, client appreciation events, recruiting fairs, and internal team events. Handle logistics, vendor coordination, and event marketing materials.',
+        requirements: '- Currently enrolled in Event Management, Marketing, or related program\n- Strong organizational and multitasking skills\n- Excellent communication skills\n- Ability to work on-site for events',
+        posted: '2026-03-25'
     }
 ];
 
@@ -195,6 +323,7 @@ function renderJobs() {
                 ${job.posted ? `<span style="font-size:.8rem;color:var(--gray-400);">Posted ${formatDate(job.posted)}</span>` : ''}
             </div>
             <div class="job-card-desc">${escapeHtml(truncate(job.description, 160))}</div>
+            <button class="btn btn-primary btn-sm job-apply-btn" onclick="event.stopPropagation();openModal(${allJobs.indexOf(job)})">Apply Now</button>
         </div>
     `).join('');
 
@@ -281,6 +410,7 @@ applyForm.addEventListener('submit', async (e) => {
             name: document.getElementById('applyName').value,
             email: document.getElementById('applyEmail').value,
             phone: document.getElementById('applyPhone').value,
+            best_contact_time: document.getElementById('applyContactTime').value,
             position: applyPosition.value,
             cover_letter: document.getElementById('applyCover').value,
             submitted: new Date().toISOString()

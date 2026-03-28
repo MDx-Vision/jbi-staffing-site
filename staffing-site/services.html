@@ -25,8 +25,17 @@
         <div class="container">
             <a href="index.html" class="logo"><img src="logo-nav-brand.png" alt="JBISOFTWARE, INC" loading="lazy"></a>
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="services.html" class="active">Services</a></li>
+                <li class="nav-dropdown-trigger">
+                    <a href="services.html" class="active">Services</a>
+                    <div class="nav-dropdown">
+                        <a href="services.html#it-staffing"><div class="dd-icon">&#128187;</div><div><div class="dd-label">IT Staffing</div><div class="dd-desc">Engineers, devs, DBAs, help desk</div></div></a>
+                        <a href="services.html#healthcare-it"><div class="dd-icon">&#127973;</div><div><div class="dd-label">Healthcare IT</div><div class="dd-desc">Epic, Cerner, Meditech analysts</div></div></a>
+                        <a href="services.html#clinical-staffing"><div class="dd-icon">&#129657;</div><div><div class="dd-label">Clinical Staffing</div><div class="dd-desc">Physicians, nurses, allied health</div></div></a>
+                        <a href="software.html"><div class="dd-icon">&#128296;</div><div><div class="dd-label">Software Development</div><div class="dd-desc">AI, full-stack, mobile apps</div></div></a>
+                        <a href="tws.html"><div class="dd-icon">&#127760;</div><div><div class="dd-label">TWS Translation</div><div class="dd-desc">Patented multilingual platform</div></div></a>
+                        <a href="kliks.html"><div class="dd-icon">&#129302;</div><div><div class="dd-label">Kliks AI</div><div class="dd-desc">AI-powered helpdesk platform</div></div></a>
+                    </div>
+                </li>
                 <li><a href="epic.html">Epic</a></li>
                 <li><a href="jobs.html">Jobs</a></li>
                 <li><a href="about.html">About</a></li>
@@ -42,7 +51,17 @@
     </nav>
     <div class="mobile-nav" id="mobileNav">
         <a href="index.html">Home</a>
-        <a href="services.html" class="active">Services</a>
+        <div>
+            <a href="services.html" class="mobile-nav-toggle active" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open');return false;">Services</a>
+            <div class="mobile-nav-accordion">
+                <a href="services.html#it-staffing">IT Staffing</a>
+                <a href="services.html#healthcare-it">Healthcare IT</a>
+                <a href="services.html#clinical-staffing">Clinical Staffing</a>
+                <a href="software.html">Software Development</a>
+                <a href="tws.html">TWS Translation</a>
+                <a href="kliks.html">Kliks AI</a>
+            </div>
+        </div>
         <a href="epic.html">Epic</a>
         <a href="jobs.html">Jobs</a>
         <a href="about.html">About</a>
@@ -112,43 +131,21 @@
     <!-- In-House Software Development -->
     <section id="software-dev" class="bg-light reveal">
         <div class="container">
-            <div style="max-width:640px;margin-bottom:60px;">
-                <span class="section-label">Software Development</span>
-                <h2>We build software too. In-house.</h2>
-                <p>Not just staffing — we've got our own dev team. AI, full-stack, mobile, security. If you need something built (not just someone to sit in a seat), talk to us.</p>
-            </div>
-
-            <div class="cards-grid cols-2 reveal-stagger">
-                <div class="card">
-                    <div class="card-icon"><span class="icon-svg icon-bot"></span></div>
-                    <h3>AI-Led Development</h3>
-                    <p>Intelligent automation, predictive analytics, personalization. We're building with AI where it actually makes sense — not just slapping it on a landing page.</p>
+            <div class="split">
+                <div class="split-text">
+                    <span class="section-label">Software Development</span>
+                    <h2>We build software too. In-house.</h2>
+                    <p>AI-led development, full-stack expertise (React, Angular, Vue, Node.js, .NET, Java, Python), mobile apps (Flutter, React Native), and HIPAA/GDPR compliance baked in from day one. Healthcare, finance, retail, logistics, and beyond.</p>
+                    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;">
+                        <span class="highlight-pill">AI & ML</span>
+                        <span class="highlight-pill">Full-Stack</span>
+                        <span class="highlight-pill">Mobile</span>
+                        <span class="highlight-pill">HIPAA/GDPR</span>
+                    </div>
+                    <a href="software.html" class="btn btn-primary" style="margin-top:20px;">Explore Software Development &rarr;</a>
                 </div>
-                <div class="card">
-                    <div class="card-icon"><span class="icon-svg icon-code"></span></div>
-                    <h3>Full-Stack Expertise</h3>
-                    <p>React, Angular, Vue on the front. Node.js, .NET, Java, Python on the back. SQL and NoSQL databases. DevOps glue holding it all together.</p>
-                </div>
-                <div class="card">
-                    <div class="card-icon"><span class="icon-svg icon-smartphone"></span></div>
-                    <h3>Mobile Apps</h3>
-                    <p>Native iOS/Android and cross-platform with Flutter and React Native.</p>
-                </div>
-                <div class="card">
-                    <div class="card-icon"><span class="icon-svg icon-shield"></span></div>
-                    <h3>Security &amp; Compliance</h3>
-                    <p>HIPAA and GDPR aren't afterthoughts here. We bake compliance and end-to-end security into everything from day one. Scalability and customization come standard.</p>
-                </div>
-            </div>
-
-            <div class="service-highlights">
-                <h3>Industries we build for</h3>
-                <div class="highlight-pills">
-                    <span class="highlight-pill">Healthcare IT</span>
-                    <span class="highlight-pill">Finance</span>
-                    <span class="highlight-pill">Retail</span>
-                    <span class="highlight-pill">Logistics</span>
-                    <span class="highlight-pill">Education</span>
+                <div class="split-visual has-image">
+                    <img src="img/development.jpg" alt="JBISOFTWARE in-house software development team" loading="lazy">
                 </div>
             </div>
         </div>
@@ -161,34 +158,40 @@
                 <div class="split-text">
                     <span class="section-label">TWS Translation</span>
                     <h2>Translation Worldwide Solution</h2>
-                    <p>We hold the patent. That's not marketing speak — it's literally patented technology for real-time translation, built for sensitive environments like healthcare where getting the words right actually matters.</p>
-                    <a href="contact.html" class="btn btn-primary" style="margin-top:12px;">Request a TWS Demo</a>
+                    <p>Patented real-time interpretation and translation platform built for healthcare, business, and global collaboration. Secure, compliant, and scalable from a single clinic to a multinational health system.</p>
+                    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;">
+                        <span class="highlight-pill">Patented</span>
+                        <span class="highlight-pill">Real-Time</span>
+                        <span class="highlight-pill">HIPAA-Compliant</span>
+                        <span class="highlight-pill">Global</span>
+                    </div>
+                    <a href="tws.html" class="btn btn-primary" style="margin-top:20px;">Explore TWS Translation &rarr;</a>
                 </div>
                 <div class="split-visual has-image">
-                    <img src="img/doctor-patient.jpg" alt="Doctor and patient communicating — the interaction TWS Translation enables across languages" loading="lazy">
+                    <img src="img/doctor-patient.jpg" alt="TWS Translation enabling multilingual healthcare communication" loading="lazy">
                 </div>
             </div>
+        </div>
+    </section>
 
-            <div class="cards-grid cols-1-2 reveal-stagger" style="margin-top:36px;">
-                <div class="card-featured">
-                    <div class="card-icon"><span class="icon-svg icon-key"></span></div>
-                    <h3>Patented Technology</h3>
-                    <p>Secure, compliant, and built from scratch for sensitive communications. This isn't a wrapper around someone else's API.</p>
+    <!-- Kliks AI Helpdesk -->
+    <section id="kliks" class="bg-light reveal">
+        <div class="container">
+            <div class="split">
+                <div class="split-text">
+                    <span class="section-label">Kliks</span>
+                    <h2>AI-Powered Helpdesk Platform</h2>
+                    <p>Next-generation support combining AI virtual agents, real-time video conferencing, and intelligent ticket routing. Integrates with Epic, Oracle, and enterprise IT systems for seamless technical assistance.</p>
+                    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;">
+                        <span class="highlight-pill">AI Triage</span>
+                        <span class="highlight-pill">Video Support</span>
+                        <span class="highlight-pill">EMR Integration</span>
+                        <span class="highlight-pill">Cloud-Native</span>
+                    </div>
+                    <a href="kliks.html" class="btn btn-primary" style="margin-top:20px;">Explore Kliks &rarr;</a>
                 </div>
-                <div class="card">
-                    <div class="card-icon"><span class="icon-svg icon-globe"></span></div>
-                    <h3>Real-Time Multilingual</h3>
-                    <p>Instant interpretation and translation across dozens of languages, anywhere in the world.</p>
-                </div>
-                <div class="card">
-                    <div class="card-icon"><span class="icon-svg icon-hospital"></span></div>
-                    <h3>Global Reach</h3>
-                    <p>Scales from a single clinic to a multinational health system. Works for enterprises and international orgs too.</p>
-                </div>
-                <div class="card">
-                    <div class="card-icon"><span class="icon-svg icon-check-circle"></span></div>
-                    <h3>Measurable Value</h3>
-                    <p>Fewer miscommunications. Better outcomes. Diverse teams that can actually work together without a language gap slowing everything down.</p>
+                <div class="split-visual has-image">
+                    <img src="img/team-office.jpg" alt="Kliks AI-powered helpdesk and support platform" loading="lazy">
                 </div>
             </div>
         </div>
@@ -369,7 +372,7 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <div class="logo"><img src="logo-nav-brand.png" alt="JBISOFTWARE, INC" loading="lazy"></div>
-                    <p>Premier staffing firm specializing in IT, healthcare IT, and clinical workforce solutions with 15+ years of proven experience.</p>
+                    <p>Premier provider of healthcare IT solutions, staffing, software development, and translation services since 2014.</p>
                 </div>
                 <div>
                     <h4>Quick Links</h4>
@@ -377,17 +380,19 @@
                         <li><a href="index.html">Home</a></li>
                         <li><a href="services.html">Services</a></li>
                         <li><a href="jobs.html">Jobs</a></li>
+                        <li><a href="epic.html">Epic</a></li>
                         <li><a href="about.html">About</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4>Services</h4>
+                    <h4>Solutions</h4>
                     <ul class="footer-links">
-                        <li><a href="services.html#it-staffing">IT Staffing</a></li>
-                        <li><a href="services.html#healthcare-it">Healthcare IT</a></li>
-                        <li><a href="services.html#clinical-staffing">Clinical Staffing</a></li>
-                        <li><a href="services.html#staffing-models">Staffing Models</a></li>
+                        <li><a href="software.html">Software Development</a></li>
+                        <li><a href="tws.html">TWS Translation</a></li>
+                        <li><a href="kliks.html">Kliks AI</a></li>
+                        <li><a href="epic.html">Epic Services</a></li>
+                        <li><a href="intake.html">Join Our Network</a></li>
                     </ul>
                 </div>
                 <div>

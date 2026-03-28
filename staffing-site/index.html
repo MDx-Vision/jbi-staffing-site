@@ -25,8 +25,17 @@
         <div class="container">
             <a href="index.html" class="logo"><img src="logo-nav-brand.png" alt="JBISOFTWARE, INC" loading="lazy"></a>
             <ul class="nav-links">
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="services.html">Services</a></li>
+                <li class="nav-dropdown-trigger">
+                    <a href="services.html">Services</a>
+                    <div class="nav-dropdown">
+                        <a href="services.html#it-staffing"><div class="dd-icon">&#128187;</div><div><div class="dd-label">IT Staffing</div><div class="dd-desc">Engineers, devs, DBAs, help desk</div></div></a>
+                        <a href="services.html#healthcare-it"><div class="dd-icon">&#127973;</div><div><div class="dd-label">Healthcare IT</div><div class="dd-desc">Epic, Cerner, Meditech analysts</div></div></a>
+                        <a href="services.html#clinical-staffing"><div class="dd-icon">&#129657;</div><div><div class="dd-label">Clinical Staffing</div><div class="dd-desc">Physicians, nurses, allied health</div></div></a>
+                        <a href="software.html"><div class="dd-icon">&#128296;</div><div><div class="dd-label">Software Development</div><div class="dd-desc">AI, full-stack, mobile apps</div></div></a>
+                        <a href="tws.html"><div class="dd-icon">&#127760;</div><div><div class="dd-label">TWS Translation</div><div class="dd-desc">Patented multilingual platform</div></div></a>
+                        <a href="kliks.html"><div class="dd-icon">&#129302;</div><div><div class="dd-label">Kliks AI</div><div class="dd-desc">AI-powered helpdesk platform</div></div></a>
+                    </div>
+                </li>
                 <li><a href="epic.html">Epic</a></li>
                 <li><a href="jobs.html">Jobs</a></li>
                 <li><a href="about.html">About</a></li>
@@ -42,7 +51,17 @@
     </nav>
     <div class="mobile-nav" id="mobileNav">
         <a href="index.html" class="active">Home</a>
-        <a href="services.html">Services</a>
+        <div>
+            <a href="services.html" class="mobile-nav-toggle" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open');return false;">Services</a>
+            <div class="mobile-nav-accordion">
+                <a href="services.html#it-staffing">IT Staffing</a>
+                <a href="services.html#healthcare-it">Healthcare IT</a>
+                <a href="services.html#clinical-staffing">Clinical Staffing</a>
+                <a href="software.html">Software Development</a>
+                <a href="tws.html">TWS Translation</a>
+                <a href="kliks.html">Kliks AI</a>
+            </div>
+        </div>
         <a href="epic.html">Epic</a>
         <a href="jobs.html">Jobs</a>
         <a href="about.html">About</a>
@@ -56,7 +75,7 @@
         <div class="container">
             <div>
                 <h1>Healthcare IT staffing that actually understands healthcare.</h1>
-                <p>We've placed over 3,500 certified professionals across 50+ health systems. Epic implementations, clinical go-lives, IT augmentation — we move fast because we've done this 200+ times.</p>
+                <p>We have successfully placed over 3,500 certified professionals across more than 250 leading healthcare organizations nationwide. Our expertise spans Epic implementations, clinical go-lives, and IT workforce augmentation — driven by deep industry expertise and a proven track record of execution.</p>
                 <div class="hero-buttons">
                     <a href="contact.html" class="btn btn-primary">Talk to Our Team</a>
                     <a href="services.html" class="btn btn-outline-white">See What We Do</a>
@@ -65,8 +84,8 @@
             <div class="hero-visual">
                 <div class="hero-stats-grid">
                     <div class="hero-stat-card">
-                        <span class="number" data-count="15" data-suffix="+">0</span>
-                        <span class="label">Years in the industry</span>
+                        <span class="number" data-count="12" data-suffix="+">0</span>
+                        <span class="label">Years since founding</span>
                     </div>
                     <div class="hero-stat-card">
                         <span class="number" data-count="200" data-suffix="+">0</span>
@@ -77,8 +96,8 @@
                         <span class="label">Professionals placed</span>
                     </div>
                     <div class="hero-stat-card">
-                        <span class="number" data-count="50" data-suffix="+">0</span>
-                        <span class="label">Health systems served</span>
+                        <span class="number" data-count="250" data-suffix="+">0</span>
+                        <span class="label">Healthcare organizations served</span>
                     </div>
                 </div>
             </div>
@@ -89,12 +108,28 @@
     <section style="padding:40px 0;">
         <div class="container">
             <p style="text-align:center;font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;color:var(--gray-400);margin-bottom:24px;">Trusted by leading health systems</p>
-            <div class="logo-bar reveal">
-                <span class="client-logo">Northwell Health</span>
-                <span class="client-logo">Mount Sinai</span>
-                <span class="client-logo">NYU Langone</span>
-                <span class="client-logo">NewYork-Presbyterian</span>
-                <span class="client-logo">Hackensack Meridian</span>
+            <div class="logo-carousel">
+                <div class="logo-track">
+                    <span class="client-logo">Northwell Health</span>
+                    <span class="client-logo">Mount Sinai</span>
+                    <span class="client-logo">NYU Langone</span>
+                    <span class="client-logo">NewYork-Presbyterian</span>
+                    <span class="client-logo">Hackensack Meridian</span>
+                    <span class="client-logo">Yale New Haven</span>
+                    <span class="client-logo">Montefiore</span>
+                    <span class="client-logo">RWJBarnabas</span>
+                    <span class="client-logo">Trinity Health</span>
+                    <!-- Duplicate for seamless loop -->
+                    <span class="client-logo">Northwell Health</span>
+                    <span class="client-logo">Mount Sinai</span>
+                    <span class="client-logo">NYU Langone</span>
+                    <span class="client-logo">NewYork-Presbyterian</span>
+                    <span class="client-logo">Hackensack Meridian</span>
+                    <span class="client-logo">Yale New Haven</span>
+                    <span class="client-logo">Montefiore</span>
+                    <span class="client-logo">RWJBarnabas</span>
+                    <span class="client-logo">Trinity Health</span>
+                </div>
             </div>
         </div>
     </section>
@@ -200,34 +235,46 @@
             </div>
             <div class="testimonials-grid reveal reveal-stagger">
                 <div class="testimonial-card">
+                    <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
                     <div class="quote-mark">&ldquo;</div>
-                    <blockquote>We needed 40 credentialed Epic trainers across 12 sites in three weeks. JBI delivered all of them — and every single one already knew our workflows. We'd burned through two other vendors before that. Should've started here.</blockquote>
-                    <div class="testimonial-author">VP of Clinical Informatics</div>
-                    <div class="testimonial-role">Large Northeast Health System</div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="quote-mark">&ldquo;</div>
-                    <blockquote>They placed two revenue cycle analysts with us on a contract basis. Both were so embedded in our operations within a month that we converted them to full-time. That almost never happens.</blockquote>
-                    <div class="testimonial-author">Director of IT Operations</div>
-                    <div class="testimonial-role">Regional Medical Center</div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="quote-mark">&ldquo;</div>
-                    <blockquote>Fast. No-nonsense. They actually pick up the phone. That's rare in this industry.</blockquote>
-                    <div class="testimonial-author">Program Manager</div>
-                    <div class="testimonial-role">Multi-site Health Network</div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="quote-mark">&ldquo;</div>
-                    <blockquote>We were short three travel nurses for our ED over a holiday weekend. JBI had credentialed replacements on-site within 48 hours. Our previous agency couldn't do that in two weeks.</blockquote>
-                    <div class="testimonial-author">Chief Nursing Officer</div>
-                    <div class="testimonial-role">Community Hospital, Southeast</div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="quote-mark">&ldquo;</div>
-                    <blockquote>We brought JBI in for a cloud migration — Azure AD, Exchange Online, the works. Their engineers handled it like they'd been on our team for years. No ramp-up, no hand-holding. The project finished two weeks early.</blockquote>
+                    <blockquote>The development team delivered a scalable platform that exceeded our expectations in both performance and usability.</blockquote>
                     <div class="testimonial-author">CTO</div>
-                    <div class="testimonial-role">Mid-market Financial Services Firm</div>
+                    <div class="testimonial-role">WorldSmart Solutions</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <div class="quote-mark">&ldquo;</div>
+                    <blockquote>The implementation aligned perfectly with our clinical workflows, minimizing disruption and improving patient care delivery.</blockquote>
+                    <div class="testimonial-author">Leadership Team</div>
+                    <div class="testimonial-role">Yale New Haven Health</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <div class="quote-mark">&ldquo;</div>
+                    <blockquote>Provider adoption exceeded expectations due to intuitive workflows and strong training support.</blockquote>
+                    <div class="testimonial-author">Medical Director</div>
+                    <div class="testimonial-role">NYU Langone Health</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <div class="quote-mark">&ldquo;</div>
+                    <blockquote>TWS makes the flow of my business so much easier. New client enrollment has gone up by 17 percent.</blockquote>
+                    <div class="testimonial-author">Robert Deluna</div>
+                    <div class="testimonial-role">Harlem, NY</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <div class="quote-mark">&ldquo;</div>
+                    <blockquote>We brought in JBISOFTWARE for a time-sensitive build, and they delivered ahead of schedule without compromising quality.</blockquote>
+                    <div class="testimonial-author">VP Engineering</div>
+                    <div class="testimonial-role">ISIT Partner Client</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    <div class="quote-mark">&ldquo;</div>
+                    <blockquote>This was more than an implementation — it was a transformation. Our entire system now operates more efficiently.</blockquote>
+                    <div class="testimonial-author">IT Leadership</div>
+                    <div class="testimonial-role">Montefiore Health System</div>
                 </div>
             </div>
         </div>
@@ -278,7 +325,7 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <div class="logo"><img src="logo-nav-brand.png" alt="JBISOFTWARE, INC" loading="lazy"></div>
-                    <p>Premier staffing firm specializing in IT, healthcare IT, and clinical workforce solutions with 15+ years of proven experience.</p>
+                    <p>Premier provider of healthcare IT solutions, staffing, software development, and translation services since 2014.</p>
                 </div>
                 <div>
                     <h4>Quick Links</h4>
@@ -286,17 +333,19 @@
                         <li><a href="index.html">Home</a></li>
                         <li><a href="services.html">Services</a></li>
                         <li><a href="jobs.html">Jobs</a></li>
+                        <li><a href="epic.html">Epic</a></li>
                         <li><a href="about.html">About</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4>Services</h4>
+                    <h4>Solutions</h4>
                     <ul class="footer-links">
-                        <li><a href="services.html#it-staffing">IT Staffing</a></li>
-                        <li><a href="services.html#healthcare-it">Healthcare IT</a></li>
-                        <li><a href="services.html#clinical-staffing">Clinical Staffing</a></li>
-                        <li><a href="services.html#staffing-models">Staffing Models</a></li>
+                        <li><a href="software.html">Software Development</a></li>
+                        <li><a href="tws.html">TWS Translation</a></li>
+                        <li><a href="kliks.html">Kliks AI</a></li>
+                        <li><a href="epic.html">Epic Services</a></li>
+                        <li><a href="intake.html">Join Our Network</a></li>
                     </ul>
                 </div>
                 <div>

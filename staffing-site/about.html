@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About — JBISOFTWARE</title>
-    <meta name="description" content="Founded by healthcare IT veterans, JBISOFTWARE connects top-tier IT, healthcare IT, and clinical talent with organizations transforming patient care. 15+ years, 200+ go-lives, nationwide.">
+    <meta name="description" content="Founded in 2014, JBISOFTWARE is a premier provider of healthcare IT solutions, software development, and language interpretation services. 200+ go-lives, 3,500+ professionals placed nationwide.">
     <meta name="robots" content="index, follow">
     <meta property="og:title" content="About — JBISOFTWARE">
-    <meta property="og:description" content="Founded by healthcare IT veterans, JBISOFTWARE connects top-tier IT, healthcare IT, and clinical talent with organizations. 15+ years, 200+ go-lives, nationwide.">
+    <meta property="og:description" content="Founded in 2014, JBISOFTWARE is a premier provider of healthcare IT solutions, software development, and language interpretation services. 200+ go-lives nationwide.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://staffing.jbisoftware.com/about.html">
     <meta property="og:image" content="https://staffing.jbisoftware.com/logo-full.png">
@@ -25,8 +25,17 @@
         <div class="container">
             <a href="index.html" class="logo"><img src="logo-nav-brand.png" alt="JBISOFTWARE, INC" loading="lazy"></a>
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="services.html">Services</a></li>
+                <li class="nav-dropdown-trigger">
+                    <a href="services.html">Services</a>
+                    <div class="nav-dropdown">
+                        <a href="services.html#it-staffing"><div class="dd-icon">&#128187;</div><div><div class="dd-label">IT Staffing</div><div class="dd-desc">Engineers, devs, DBAs, help desk</div></div></a>
+                        <a href="services.html#healthcare-it"><div class="dd-icon">&#127973;</div><div><div class="dd-label">Healthcare IT</div><div class="dd-desc">Epic, Cerner, Meditech analysts</div></div></a>
+                        <a href="services.html#clinical-staffing"><div class="dd-icon">&#129657;</div><div><div class="dd-label">Clinical Staffing</div><div class="dd-desc">Physicians, nurses, allied health</div></div></a>
+                        <a href="software.html"><div class="dd-icon">&#128296;</div><div><div class="dd-label">Software Development</div><div class="dd-desc">AI, full-stack, mobile apps</div></div></a>
+                        <a href="tws.html"><div class="dd-icon">&#127760;</div><div><div class="dd-label">TWS Translation</div><div class="dd-desc">Patented multilingual platform</div></div></a>
+                        <a href="kliks.html"><div class="dd-icon">&#129302;</div><div><div class="dd-label">Kliks AI</div><div class="dd-desc">AI-powered helpdesk platform</div></div></a>
+                    </div>
+                </li>
                 <li><a href="epic.html">Epic</a></li>
                 <li><a href="jobs.html">Jobs</a></li>
                 <li><a href="about.html" class="active">About</a></li>
@@ -42,7 +51,17 @@
     </nav>
     <div class="mobile-nav" id="mobileNav">
         <a href="index.html">Home</a>
-        <a href="services.html">Services</a>
+        <div>
+            <a href="services.html" class="mobile-nav-toggle" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open');return false;">Services</a>
+            <div class="mobile-nav-accordion">
+                <a href="services.html#it-staffing">IT Staffing</a>
+                <a href="services.html#healthcare-it">Healthcare IT</a>
+                <a href="services.html#clinical-staffing">Clinical Staffing</a>
+                <a href="software.html">Software Development</a>
+                <a href="tws.html">TWS Translation</a>
+                <a href="kliks.html">Kliks AI</a>
+            </div>
+        </div>
         <a href="epic.html">Epic</a>
         <a href="jobs.html">Jobs</a>
         <a href="about.html" class="active">About</a>
@@ -55,7 +74,7 @@
     <section class="about-hero has-bg" id="main" style="background-image:url('img/team-office.jpg');">
         <div class="container">
             <h1>We started in the trenches of Epic go-lives. We built a company from there.</h1>
-            <p style="color:rgba(255,255,255,.75);max-width:640px;margin:20px auto 0;font-size:1.1rem;">15 years ago, our founders were the analysts and PMs pulling 14-hour days during health system implementations. They saw what worked, what didn't, and what the staffing industry kept getting wrong.</p>
+            <p style="color:rgba(255,255,255,.75);max-width:640px;margin:20px auto 0;font-size:1.1rem;">Since our founding in 2014, our team has been the analysts and PMs pulling 14-hour days during health system implementations. We saw what worked, what didn't, and what the staffing industry kept getting wrong.</p>
         </div>
     </section>
 
@@ -65,9 +84,10 @@
             <div class="split reveal">
                 <div class="split-text">
                     <h2>The short version</h2>
-                    <p style="margin-bottom:16px;">We were the people health systems called when their staffing vendor sent analysts who'd never touched Epic. After years of fixing other firms' mistakes, we decided to build something better.</p>
-                    <p style="margin-bottom:16px;">The idea was simple: only place people who've actually done the work. Not "proficient" — certified. Not "experienced with EHR" — they've been through go-lives, they know what command center looks like at 3am, and they don't need hand-holding.</p>
-                    <p>That same rigor now extends across IT staffing, clinical placement, and custom software development. The bar doesn't change depending on the role.</p>
+                    <p style="margin-bottom:16px;">JBISOFTWARE, INC, founded in 2014, is a premier provider of healthcare IT solutions, software development, and language interpretation and translation services. With a strong foundation in innovation and client-focused delivery, we have established ourselves as a trusted partner to healthcare organizations, technology firms, and enterprise clients across the United States.</p>
+                    <p style="margin-bottom:16px;">Our core expertise lies in Epic systems implementation, optimization, and workforce solutions. We support healthcare organizations through every phase of their digital transformation journey — including system design, integration, clinical go-lives, and post-implementation support.</p>
+                    <p style="margin-bottom:16px;">In addition to healthcare IT, we deliver custom software development solutions tailored to meet the evolving needs of modern businesses, and professional interpretation and translation services enabling organizations to communicate effectively across diverse populations.</p>
+                    <p>With a commitment to excellence, innovation, and reliability, JBISOFTWARE continues to lead with integrity while delivering measurable results for clients nationwide.</p>
                 </div>
                 <div class="split-visual has-image">
                     <img src="img/meeting.jpg" alt="JBI team collaborating on a staffing project" loading="lazy">
@@ -81,8 +101,8 @@
         <div class="container">
             <div class="stats-row reveal reveal-stagger">
                 <div class="stat">
-                    <div class="number" data-count="15" data-suffix="+">0</div>
-                    <div class="label">Years doing this</div>
+                    <div class="number" data-count="12" data-suffix="+">0</div>
+                    <div class="label">Years since founding</div>
                 </div>
                 <div class="stat">
                     <div class="number" data-count="200" data-suffix="+">0</div>
@@ -93,8 +113,8 @@
                     <div class="label">Professionals placed</div>
                 </div>
                 <div class="stat">
-                    <div class="number" data-count="50" data-suffix="+">0</div>
-                    <div class="label">Health systems served</div>
+                    <div class="number" data-count="250" data-suffix="+">0</div>
+                    <div class="label">Healthcare organizations served</div>
                 </div>
             </div>
         </div>
@@ -162,7 +182,7 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <div class="logo"><img src="logo-nav-brand.png" alt="JBISOFTWARE, INC" loading="lazy"></div>
-                    <p>Premier staffing firm specializing in IT, healthcare IT, and clinical workforce solutions with 15+ years of proven experience.</p>
+                    <p>Premier provider of healthcare IT solutions, staffing, software development, and translation services since 2014.</p>
                 </div>
                 <div>
                     <h4>Quick Links</h4>
@@ -170,17 +190,19 @@
                         <li><a href="index.html">Home</a></li>
                         <li><a href="services.html">Services</a></li>
                         <li><a href="jobs.html">Jobs</a></li>
+                        <li><a href="epic.html">Epic</a></li>
                         <li><a href="about.html">About</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4>Services</h4>
+                    <h4>Solutions</h4>
                     <ul class="footer-links">
-                        <li><a href="services.html#it-staffing">IT Staffing</a></li>
-                        <li><a href="services.html#healthcare-it">Healthcare IT</a></li>
-                        <li><a href="services.html#clinical-staffing">Clinical Staffing</a></li>
-                        <li><a href="services.html#staffing-models">Staffing Models</a></li>
+                        <li><a href="software.html">Software Development</a></li>
+                        <li><a href="tws.html">TWS Translation</a></li>
+                        <li><a href="kliks.html">Kliks AI</a></li>
+                        <li><a href="epic.html">Epic Services</a></li>
+                        <li><a href="intake.html">Join Our Network</a></li>
                     </ul>
                 </div>
                 <div>
