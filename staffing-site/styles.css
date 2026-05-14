@@ -1295,9 +1295,7 @@ body::after {
 .section-header p { margin-top: 14px; font-size: 1.05rem; }
 
 /* ---------- Smooth image loading ---------- */
-img { transition: opacity .4s ease; }
-img[loading="lazy"] { opacity: 0; }
-img[loading="lazy"].loaded { opacity: 1; }
+img { transition: opacity .3s ease; }
 
 /* ---------- Focus ring consistency ---------- */
 :focus-visible {
