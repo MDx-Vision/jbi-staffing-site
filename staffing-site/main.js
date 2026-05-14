@@ -117,3 +117,26 @@ if (navbar) {
         lastScroll = scrollY;
     }, { passive: true });
 }
+
+// Mega-menu — JS controlled with close delay so mouse can travel to dropdown
+document.querySelectorAll('.nav-dropdown-trigger').forEach(trigger => {
+    const dropdown = trigger.querySelector('.nav-dropdown');
+    if (!dropdown) return;
+    let closeTimer = null;
+
+    function openMenu() {
+        clearTimeout(closeTimer);
+        dropdown.classList.add('is-open');
+    }
+
+    function scheduleClose() {
+        closeTimer = setTimeout(() => {
+            dropdown.classList.remove('is-open');
+        }, 150);
+    }
+
+    trigger.addEventListener('mouseenter', openMenu);
+    trigger.addEventListener('mouseleave', scheduleClose);
+    dropdown.addEventListener('mouseenter', openMenu);
+    dropdown.addEventListener('mouseleave', scheduleClose);
+});
