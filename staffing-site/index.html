@@ -16,7 +16,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="icons.css">
-    <link rel="stylesheet" href="styles.css?v=9">
+    <link rel="stylesheet" href="styles.css?v=10">
 </head>
 <body>
     <a href="#main" class="skip-link">Skip to content</a>
@@ -77,29 +77,36 @@
             <div>
                 <h1>Healthcare IT Staffing Built by Implementation Professionals</h1>
                 <p>We connect health systems with proven Epic consultants, analysts, project managers, and operational leaders who understand the realities of large-scale implementations.</p>
-                <p style="color:rgba(255,255,255,.65);font-size:1rem;margin-top:10px;margin-bottom:36px;">Since 2014, we've supported organizations through go-lives, optimization initiatives, system rollouts, and enterprise transformation projects nationwide.</p>
+                <p style="color:var(--white-60);font-size:1rem;margin-top:10px;margin-bottom:36px;">Since 2014, we've supported organizations through go-lives, optimization initiatives, system rollouts, and enterprise transformation projects nationwide.</p>
                 <div class="hero-buttons">
                     <a href="contact.html" class="btn btn-primary">Request Talent</a>
                     <a href="jobs.html" class="btn btn-outline-white">Find Opportunities</a>
                 </div>
             </div>
             <div class="hero-visual">
-                <div class="hero-stats-grid">
-                    <div class="hero-stat-card">
-                        <span class="number" data-count="12" data-suffix="+">0</span>
-                        <span class="label">Years since founding</span>
-                    </div>
-                    <div class="hero-stat-card">
-                        <span class="number" data-count="200" data-suffix="+">0</span>
-                        <span class="label">Go-lives completed</span>
-                    </div>
-                    <div class="hero-stat-card">
+                <div class="hero-stats-asymmetric">
+                    <!-- Primary stat — spans full width -->
+                    <div class="hero-stat-primary">
                         <span class="number" data-count="3500" data-suffix="+">0</span>
-                        <span class="label">Professionals placed</span>
+                        <span class="label">Professionals placed nationwide</span>
+                        <span class="sublabel">Since 2014 — across Epic, IT, clinical, and software</span>
                     </div>
-                    <div class="hero-stat-card">
-                        <span class="number" data-count="250" data-suffix="+">0</span>
-                        <span class="label">Healthcare organizations served</span>
+                    <!-- Secondary row — 3 smaller stats -->
+                    <div class="hero-stats-row">
+                        <div class="hero-stat-secondary">
+                            <span class="number" data-count="200" data-suffix="+">0</span>
+                            <span class="label">Go-lives</span>
+                        </div>
+                        <div class="hero-stat-divider"></div>
+                        <div class="hero-stat-secondary">
+                            <span class="number" data-count="250" data-suffix="+">0</span>
+                            <span class="label">Health systems served</span>
+                        </div>
+                        <div class="hero-stat-divider"></div>
+                        <div class="hero-stat-secondary">
+                            <span class="number" data-count="12" data-suffix="+">0</span>
+                            <span class="label">Years</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -144,12 +151,19 @@
                 <h2>Experienced healthcare IT professionals, deployed when you need them.</h2>
                 <p>We provide consultants who integrate quickly, lead confidently, and deliver measurable results across complex healthcare environments. From Epic implementations and optimization projects to PMO leadership and operational support, we help organizations scale the right teams at the right time.</p>
             </div>
-            <div class="cards-grid cols-3 reveal reveal-stagger">
-                <div class="card">
-                    <div class="card-icon teal"><span class="icon-svg icon-hospital"></span></div>
-                    <h3>Epic Implementation Support</h3>
-                    <p>Experienced Epic-certified consultants, analysts, trainers, and project leaders who understand the pace and complexity of enterprise go-lives.</p>
+            <!-- Lead featured card -->
+            <div class="card card-featured card-lead reveal" style="margin-bottom:24px;">
+                <div style="display:flex;align-items:flex-start;gap:20px;flex-wrap:wrap;">
+                    <div class="card-icon teal" style="flex-shrink:0;"><span class="icon-svg icon-hospital"></span></div>
+                    <div style="flex:1;min-width:200px;">
+                        <h3 style="font-size:1.4rem;margin-bottom:10px;">Epic Implementation Support</h3>
+                        <p style="font-size:1rem;max-width:600px;">Experienced Epic-certified consultants, analysts, trainers, and project leaders who understand the pace and complexity of enterprise go-lives. We've supported 200+ activations — we know what it takes before day one.</p>
+                        <a href="epic.html" class="card-link" style="margin-top:16px;display:inline-block;">See Epic services →</a>
+                    </div>
                 </div>
+            </div>
+            <!-- 2-col supporting grid -->
+            <div class="cards-grid cols-2 reveal reveal-stagger">
                 <div class="card">
                     <div class="card-icon teal"><span class="icon-svg icon-chart"></span></div>
                     <h3>Project &amp; Program Management</h3>
@@ -170,11 +184,14 @@
                     <h3>Optimization &amp; Managed Support</h3>
                     <p>Post-go-live resources focused on workflow refinement, issue resolution, adoption improvement, and long-term operational success.</p>
                 </div>
-                <div class="card">
-                    <div class="card-icon teal"><span class="icon-svg icon-users"></span></div>
-                    <h3>Direct Hire &amp; Contract Staffing</h3>
-                    <p>Flexible staffing models designed to support both urgent project demands and long-term strategic hiring initiatives.</p>
+            </div>
+            <!-- Bottom CTA card — breaks the rhythm -->
+            <div class="card-inline-cta reveal" style="margin-top:24px;">
+                <div>
+                    <strong>Direct Hire &amp; Contract Staffing</strong>
+                    <span>Flexible models for urgent needs and long-term strategic hires — one contract, one standard, every placement.</span>
                 </div>
+                <a href="contact.html" class="btn btn-primary btn-sm">Discuss staffing models</a>
             </div>
         </div>
     </section>
