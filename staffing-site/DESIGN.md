@@ -8,16 +8,19 @@ Healthcare B2B audience. Trustworthy and premium without being cold. Navy + teal
 
 All colors are defined as CSS custom properties in `:root` in `styles.css`.
 
+### Color strategy
+Hex values live in `:root` as the universal fallback. An `@supports (color: oklch(0 0 0))` block overrides them with OKLCH equivalents for modern browsers (Chrome 111+, Firefox 113+, Safari 16.4+). This provides perceptually-uniform color mixing and smoother gradients without breaking older clients. Never use raw hex directly in rules — always use the `var()` tokens.
+
 ### Base palette
-| Token | Value | Use |
+| Token | Hex fallback | OKLCH | Use |
 |-------|-------|-----|
-| `--navy` | `#0b213f` | Primary dark — backgrounds, text |
-| `--navy-light` | `#0e2a4a` | Secondary dark — gradient stops |
-| `--teal` | `#0094b8` | Primary accent — CTAs, icons, highlights |
-| `--teal-dark` | `#007a99` | Hover state for teal elements |
-| `--green` | `#76c043` | Success states only |
-| `--red` | `#dc2626` | Error states only |
-| `--white` | `#ffffff` | — |
+| `--navy` | `#0b213f` | `oklch(0.249 0.0636 256.9deg)` | Primary dark — backgrounds, text |
+| `--navy-light` | `#0e2a4a` | `oklch(0.282 0.0680 253.8deg)` | Secondary dark — gradient stops |
+| `--teal` | `#0094b8` | `oklch(0.619 0.1152 223.0deg)` | Primary accent — CTAs, icons, highlights |
+| `--teal-dark` | `#007a99` | `oklch(0.538 0.1008 223.6deg)` | Hover state for teal elements |
+| `--green` | `#76c043` | `oklch(0.734 0.1748 134.9deg)` | Success states only |
+| `--red` | `#dc2626` | `oklch(0.577 0.2152 27.3deg)` | Error states only |
+| `--white` | `#ffffff` | — | — |
 
 ### Gray scale (Tailwind-aligned)
 `--gray-50` through `--gray-900` — standard semantic gray steps
