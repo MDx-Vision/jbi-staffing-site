@@ -30,20 +30,24 @@
   --red: #dc2626;
 
   /* Semantic alpha tokens — avoids repeated inline rgba() */
-  --white-12:  rgba(255,255,255,.12);
-  --white-10:  rgba(255,255,255,.10);
-  --white-08:  rgba(255,255,255,.08);
+  --white-92:  rgba(255,255,255,.92);
   --white-75:  rgba(255,255,255,.75);
   --white-70:  rgba(255,255,255,.70);
   --white-60:  rgba(255,255,255,.60);
   --white-35:  rgba(255,255,255,.35);
   --white-30:  rgba(255,255,255,.30);
-  --white-10b: rgba(255,255,255,.10);
+  --white-12:  rgba(255,255,255,.12);
+  --white-10:  rgba(255,255,255,.10);
+  --white-08:  rgba(255,255,255,.08);
+  --teal-20:   rgba(0,148,184,.20);
+  --teal-15:   rgba(0,148,184,.15);
+  --teal-14:   rgba(0,148,184,.14);
   --teal-10:   rgba(0,148,184,.10);
   --teal-08:   rgba(0,148,184,.08);
   --teal-06:   rgba(0,148,184,.06);
-  --teal-20:   rgba(0,148,184,.20);
-  --teal-14:   rgba(0,148,184,.14);
+  --green-10:  rgba(118,192,67,.10);
+  --red-15:    rgba(220,38,38,.15);
+  --red-10:    rgba(220,38,38,.10);
   --navy-96:   rgba(11,33,63,.96);
   --navy-14:   rgba(11,33,63,.14);
   --navy-10:   rgba(11,33,63,.10);
@@ -148,7 +152,7 @@ p  { color: var(--gray-600); line-height: 1.75; max-width: 68ch; }
 /* ---------- Navbar ---------- */
 .navbar {
   position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-  background: rgba(255,255,255,.92);
+  background: var(--white-92);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--gray-200);
   transition: box-shadow .25s cubic-bezier(.22,1,.36,1);
@@ -399,13 +403,13 @@ section { padding: 80px 0; }
 .form-group textarea:focus {
   outline: none;
   border-color: var(--teal);
-  box-shadow: 0 0 0 3px rgba(0,148,184,.15);
+  box-shadow: 0 0 0 3px var(--teal-15);
 }
 .form-group input.is-invalid,
 .form-group select.is-invalid,
 .form-group textarea.is-invalid {
   border-color: var(--red);
-  box-shadow: 0 0 0 3px rgba(220,38,38,.15);
+  box-shadow: 0 0 0 3px var(--red-15);
 }
 .form-group.success-message,
 .form-group.error-message {
@@ -416,12 +420,12 @@ section { padding: 80px 0; }
   text-align: center;
 }
 .form-group.success-message {
-  background-color: rgba(118, 192, 67, .1);
+  background-color: var(--green-10);
   border: 1px solid var(--green);
   color: var(--green);
 }
 .form-group.error-message {
-  background-color: rgba(220, 38, 38, .1);
+  background-color: var(--red-10);
   border: 1px solid var(--red);
   color: var(--red);
 }
@@ -1375,7 +1379,7 @@ body::after {
 .section-header p { margin-top: 14px; font-size: 1.05rem; }
 
 /* ---------- Smooth image loading ---------- */
-img { transition: opacity .3s ease; }
+img { transition: opacity .3s cubic-bezier(.22,1,.36,1); }
 
 /* ---------- Focus ring consistency ---------- */
 :focus-visible {
@@ -1493,7 +1497,7 @@ img { transition: opacity .3s ease; }
   display: block;
 }
 .card-lead .card-link {
-  color: rgba(255,255,255,.7);
+  color: var(--white-70);
 }
 .card-lead .card-link:hover {
   color: var(--white);
