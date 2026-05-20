@@ -16,7 +16,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="icons.css">
-    <link rel="stylesheet" href="styles.css?v=5">
+    <link rel="stylesheet" href="styles.css?v=8">
 </head>
 <body>
     <a href="#main" class="skip-link">Skip to content</a>
@@ -70,8 +70,9 @@
         <a href="contact.html" class="btn btn-primary" style="margin-top:16px;text-align:center;">Get Started</a>
     </div>
 
+    <main id="main">
     <!-- Page Header -->
-    <section class="page-header" id="main">
+    <section class="page-header">
         <div class="container">
             <h1>Apply to join our network.</h1>
             <p>Takes about 5 minutes. We'll review your info and reach out within 48 hours if there's a fit.</p>
@@ -378,13 +379,15 @@
             <div class="status-icon"><span class="icon-svg icon-alert" style="width:48px;height:48px;"></span></div>
             <h3>Submission Failed</h3>
             <p>Your application couldn't be submitted. Please try again or email us directly at <a href="mailto:info@jbisoftware.com">info@jbisoftware.com</a>.</p>
-            <button class="btn btn-secondary" style="margin-top:24px;" onclick="document.getElementById('intakeError').classList.remove('active');document.getElementById('intakeForm').style.display='block';document.querySelector('.intake-notice').style.display='block';">Try Again</button>
+            <button type="button" class="btn btn-secondary" style="margin-top:24px;" onclick="document.getElementById('intakeError').classList.remove('active');document.getElementById('intakeForm').style.display='block';document.querySelector('.intake-notice').style.display='block';">Try Again</button>
         </div>
 
         <!-- Confidentiality Notice -->
         <div class="intake-notice">
             <p><strong>Confidentiality Notice:</strong> This form contains personal information. Please submit securely and do not share with unauthorized individuals.</p>
         </div>
+    </main>
+
     </main>
 
     <!-- Footer -->
