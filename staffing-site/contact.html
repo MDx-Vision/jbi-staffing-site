@@ -16,7 +16,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="icons.css">
-    <link rel="stylesheet" href="styles.css?v=13">
+    <link rel="stylesheet" href="styles.css?v=14">
 </head>
 <body>
     <a href="#main" class="skip-link">Skip to content</a>
@@ -190,8 +190,35 @@
         </div>
     </section>
 
+    <!-- Bookings CTA -->
+    <section style="padding:60px 0 0;">
+        <div class="container">
+            <div class="split reveal" style="align-items:center;gap:40px;">
+                <div class="split-text">
+                    <span class="section-label">Schedule</span>
+                    <h2>Prefer to talk first?</h2>
+                    <p>Book a 30-minute consultation directly with our team. Pick a time that works — no back-and-forth email.</p>
+                    <!-- BOOKINGS_LINK_PLACEHOLDER: replace href with your Microsoft Bookings URL -->
+                    <a href="YOUR_BOOKINGS_URL_HERE" class="btn btn-primary" target="_blank" rel="noopener">
+                        Schedule a Consultation
+                    </a>
+                </div>
+                <div class="split-visual">
+                    <div style="background:var(--gray-50);border:1px solid var(--gray-200);border-radius:16px;padding:40px 32px;text-align:center;">
+                        <div style="font-size:3rem;margin-bottom:12px;">📅</div>
+                        <p style="font-weight:600;color:var(--navy);margin-bottom:4px;">30-minute call</p>
+                        <p style="color:var(--gray-500);font-size:.9rem;">Video or phone — your choice</p>
+                        <div style="margin-top:20px;padding-top:20px;border-top:1px solid var(--gray-200);">
+                            <p style="color:var(--gray-500);font-size:.85rem;">Mon – Fri &nbsp;·&nbsp; 8AM – 6PM EST</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- CTA Banner -->
-    <section style="padding-bottom:100px;">
+    <section style="padding:60px 0 100px;">
         <div class="container">
             <div class="cta-banner">
                 <h2>Looking for work, not looking to hire?</h2>
@@ -248,156 +275,71 @@
     <script src="main.js"></script>
     <script>
         // ============================================================
-        // SETUP: Replace this URL with your Power Automate HTTP trigger
-        // Steps to create:
-        //   1. Go to https://make.powerautomate.com
-        //   2. Create new "Instant cloud flow"
-        //   3. Trigger: "When an HTTP request is received"
-        //   4. Paste this JSON schema in the trigger:
-        //      {
-        //        "type": "object",
-        //        "properties": {
-        //          "name":    { "type": "string" },
-        //          "email":   { "type": "string" },
-        //          "phone":   { "type": "string" },
-        //          "company": { "type": "string" },
-        //          "subject": { "type": "string" },
-        //          "message": { "type": "string" },
-        //          "form":    { "type": "string" },
-        //          "submitted_at": { "type": "string" }
-        //        }
-        //      }
-        //   5. Add action: "Send an email (V2)" from Outlook 365
-        //      - To: info@jbisoftware.com
-        //      - Subject: New Contact: [subject] from [name]
-        //      - Body: use dynamic content fields
-        //   6. Save → copy the HTTP POST URL → paste below
+        // Power Automate webhook — paste your HTTP trigger URL below
+        // See MICROSOFT_SETUP.md for full step-by-step instructions
         // ============================================================
-        const CONTACT_WEBHOOK = 'YOUR_POWER_AUTOMATE_URL_HERE';
+        const CONTACT_WEBHOOK = 'YOUR_POWER_AUTOMATE_CONTACT_URL_HERE';
 
         const contactForm = document.getElementById('contactForm');
         const contactSubmit = document.getElementById('contactSubmit');
+        const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        function validate(form) {
+            let ok = true;
+            ['name', 'email', 'message'].forEach(id => {
+                const el = form.querySelector('#' + id);
+                const empty = id === 'email'
+                    ? !EMAIL_RE.test(el.value.trim())
+                    : el.value.trim() === '';
+                el.classList.toggle('is-invalid', empty);
+                if (empty) ok = false;
+            });
+            // subject select
+            const subj = form.querySelector('#subject');
+            const noSubj = !subj.value;
+            subj.classList.toggle('is-invalid', noSubj);
+            if (noSubj) ok = false;
+            return ok;
+        }
 
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            contactSubmit.classList.add('loading');
-            contactSubmit.textContent = 'Sending...';
+            if (!validate(contactForm)) return;
+
+            contactSubmit.disabled = true;
+            contactSubmit.textContent = 'Sending…';
 
             const data = {
-                name: contactForm.querySelector('#name').value,
-                email: contactForm.querySelector('#email').value,
-                phone: contactForm.querySelector('#phone').value || '',
-                company: contactForm.querySelector('#company').value || '',
-                subject: contactForm.querySelector('#subject').value,
-                message: contactForm.querySelector('#message').value,
-                form: 'contact',
+                name:         contactForm.querySelector('#name').value.trim(),
+                email:        contactForm.querySelector('#email').value.trim(),
+                phone:        contactForm.querySelector('#phone').value.trim(),
+                company:      contactForm.querySelector('#company').value.trim(),
+                subject:      contactForm.querySelector('#subject').value,
+                message:      contactForm.querySelector('#message').value.trim(),
+                form:         'contact',
                 submitted_at: new Date().toISOString()
             };
 
             try {
-                const res = await fetch(CONTACT_WEBHOOK, {
+                await fetch(CONTACT_WEBHOOK, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(data),
-                    mode: 'no-cors' // Power Automate doesn't return CORS headers
+                    mode: 'no-cors'
                 });
-                // no-cors means we can't read the response, but if no error thrown it worked
                 contactForm.style.display = 'none';
                 document.getElementById('contactSuccess').classList.add('active');
             } catch {
-                contactForm.style.display = 'none';
                 document.getElementById('contactError').classList.add('active');
+            } finally {
+                contactSubmit.disabled = false;
+                contactSubmit.textContent = 'Send Message';
             }
-            contactSubmit.classList.remove('loading');
-            contactSubmit.textContent = 'Send Message';
         });
-    </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const contactForm = document.getElementById('contactForm');
-            const contactSubmit = document.getElementById('contactSubmit');
-            const contactSuccessMessage = document.getElementById('contactSuccessMessage');
-            const contactErrorMessage = document.getElementById('contactErrorMessage');
 
-            contactForm.addEventListener('submit', function(event) {
-                event.preventDefault(); // Prevent default form submission
-
-                // Clear previous messages
-                contactSuccessMessage.style.display = 'none';
-                contactErrorMessage.style.display = 'none';
-                
-                let isValid = true;
-
-                // Basic validation for Name (required)
-                const nameInput = document.getElementById('name');
-                if (nameInput.value.trim() === '') {
-                    isValid = false;
-                    nameInput.classList.add('is-invalid');
-                } else {
-                    nameInput.classList.remove('is-invalid');
-                }
-
-                // Basic validation for Email (required and format)
-                const emailInput = document.getElementById('email');
-                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailPattern.test(emailInput.value.trim())) {
-                    isValid = false;
-                    emailInput.classList.add('is-invalid');
-                } else {
-                    emailInput.classList.remove('is-invalid');
-                }
-
-                // Basic validation for Message (required)
-                const messageInput = document.getElementById('message');
-                if (messageInput.value.trim() === '') {
-                    isValid = false;
-                    messageInput.classList.add('is-invalid');
-                } else {
-                    messageInput.classList.remove('is-invalid');
-                }
-
-                if (isValid) {
-                    // Simulate form submission
-                    contactSubmit.disabled = true;
-                    contactSubmit.textContent = 'Sending...';
-
-                    fetch('YOUR_BACKEND_ENDPOINT_HERE', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            name: nameInput.value.trim(),
-                            company: document.getElementById('company').value.trim(),
-                            email: emailInput.value.trim(),
-                            phone: document.getElementById('phone').value.trim(),
-                            subject: document.getElementById('subject').value,
-                            message: messageInput.value.trim()
-                        }),
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            contactSuccessMessage.style.display = 'block';
-                            contactForm.reset();
-                        } else {
-                            // Handle specific backend errors if any
-                            contactErrorMessage.style.display = 'block';
-                            console.error('Backend error:', data.message);
-                        }
-                    })
-                    .catch((error) => {
-                        contactErrorMessage.style.display = 'block';
-                        console.error('Network or server error:', error);
-                    })
-                    .finally(() => {
-                        contactSubmit.disabled = false;
-                        contactSubmit.textContent = 'Send Message';
-                    });
-                } else {
-                    contactErrorMessage.style.display = 'block';
-                }
-            });
+        // Live clear of validation errors on input
+        contactForm.querySelectorAll('input, select, textarea').forEach(el => {
+            el.addEventListener('input', () => el.classList.remove('is-invalid'));
         });
     </script>
 </body>
