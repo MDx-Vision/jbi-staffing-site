@@ -12,14 +12,17 @@
 // 3. Publish the sheet: File → Share → Publish to web → Sheet1 → CSV → Publish
 //    Copy the URL and paste it below as SHEET_CSV_URL.
 //
-// 4. For the apply form, create a Google Apps Script:
-//    See the APPS_SCRIPT_CODE comment at the bottom of this file.
-//    Deploy it as a web app and paste the URL below as APPS_SCRIPT_URL.
+// 4. The apply form posts to Formspree (APPLY_ENDPOINT below), the same
+//    service the contact and intake forms use. The resume is sent as a
+//    file attachment; if the Formspree plan rejects attachments, the
+//    application is re-sent without the file and flagged so the team can
+//    request the resume from the candidate.
+//    (Google Apps Script alternative kept as a comment at the bottom.)
 // ============================================================
 
 // ── CONFIG — Replace these with your actual URLs ──
 const SHEET_CSV_URL = ''; // Your published Google Sheet CSV URL
-const APPS_SCRIPT_URL = ''; // Your deployed Apps Script web app URL
+const APPLY_ENDPOINT = 'https://formspree.io/f/xnpqwzlv'; // Formspree form (shared with contact form)
 
 // ── DEMO DATA (used when SHEET_CSV_URL is empty) ──
 const DEMO_JOBS = [
@@ -400,42 +403,56 @@ fileInput.addEventListener('change', () => {
 });
 
 // ── APPLY FORM SUBMIT ──
+function buildApplyPayload(includeResume) {
+    const fd = new FormData();
+    fd.append('form', 'job_application');
+    fd.append('_subject', 'Job Application: ' + applyPosition.value);
+    fd.append('position', applyPosition.value);
+    fd.append('name', document.getElementById('applyName').value);
+    fd.append('email', document.getElementById('applyEmail').value);
+    fd.append('_replyto', document.getElementById('applyEmail').value);
+    fd.append('phone', document.getElementById('applyPhone').value);
+    fd.append('best_contact_time', document.getElementById('applyContactTime').value);
+    fd.append('cover_letter', document.getElementById('applyCover').value);
+    fd.append('submitted', new Date().toISOString());
+    if (fileInput.files.length > 0) {
+        if (includeResume) {
+            fd.append('resume', fileInput.files[0], fileInput.files[0].name);
+        } else {
+            fd.append('resume_note', 'Resume "' + fileInput.files[0].name +
+                '" could not be attached by the form service. Request it from the candidate.');
+        }
+    }
+    return fd;
+}
+
+async function postApplication(includeResume) {
+    const res = await fetch(APPLY_ENDPOINT, {
+        method: 'POST',
+        body: buildApplyPayload(includeResume),
+        headers: { 'Accept': 'application/json' }
+    });
+    return res.ok;
+}
+
 applyForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     applySubmit.classList.add('loading');
     applySubmit.textContent = 'Submitting...';
 
     try {
-        const formData = {
-            name: document.getElementById('applyName').value,
-            email: document.getElementById('applyEmail').value,
-            phone: document.getElementById('applyPhone').value,
-            best_contact_time: document.getElementById('applyContactTime').value,
-            position: applyPosition.value,
-            cover_letter: document.getElementById('applyCover').value,
-            submitted: new Date().toISOString()
-        };
-
-        // Convert resume to base64 if present
-        if (fileInput.files.length > 0) {
-            formData.resume_name = fileInput.files[0].name;
-            formData.resume_data = await fileToBase64(fileInput.files[0]);
+        if (!APPLY_ENDPOINT) {
+            throw new Error('No application endpoint configured');
         }
 
-        if (!APPS_SCRIPT_URL) {
-            // Demo mode — simulate success
-            await new Promise(r => setTimeout(r, 1500));
-            showApplySuccess();
-            return;
+        let ok = await postApplication(true);
+        // Formspree rejects file attachments on plans without uploads —
+        // deliver the application anyway, minus the file, and flag it.
+        if (!ok && fileInput.files.length > 0) {
+            ok = await postApplication(false);
         }
 
-        const res = await fetch(APPS_SCRIPT_URL, {
-            method: 'POST',
-            body: JSON.stringify(formData),
-            headers: { 'Content-Type': 'text/plain' }
-        });
-
-        if (res.ok) {
+        if (ok) {
             showApplySuccess();
         } else {
             throw new Error('Submission failed');
@@ -452,15 +469,6 @@ applyForm.addEventListener('submit', async (e) => {
 function showApplySuccess() {
     applyForm.style.display = 'none';
     document.getElementById('applySuccess').classList.add('active');
-}
-
-function fileToBase64(file) {
-    return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.onload = () => resolve(reader.result.split(',')[1]);
-        reader.onerror = reject;
-        reader.readAsDataURL(file);
-    });
 }
 
 // ── HELPERS ──
