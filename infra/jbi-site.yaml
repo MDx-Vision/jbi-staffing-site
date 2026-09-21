@@ -4,6 +4,16 @@ Parameters:
   GitHubRepo:
     Type: String
     Default: MDx-Vision/jbi-staffing-site
+  DomainName:
+    Type: String
+    Default: ''
+    Description: Optional custom hostname, e.g. www.jbisoftware.com. Leave empty to serve on the cloudfront.net address.
+  CertificateArn:
+    Type: String
+    Default: ''
+    Description: ISSUED ACM certificate ARN in us-east-1 covering DomainName. Required when DomainName is set.
+Conditions:
+  HasDomain: !Not [!Equals [!Ref DomainName, '']]
 Resources:
   SiteBucket:
     Type: AWS::S3::Bucket
@@ -35,6 +45,11 @@ Resources:
         DefaultRootObject: index.html
         HttpVersion: http2and3
         PriceClass: PriceClass_100
+        Aliases: !If [HasDomain, [!Ref DomainName], !Ref 'AWS::NoValue']
+        ViewerCertificate: !If
+          - HasDomain
+          - { AcmCertificateArn: !Ref CertificateArn, SslSupportMethod: sni-only, MinimumProtocolVersion: TLSv1.2_2021 }
+          - { CloudFrontDefaultCertificate: true }
         Origins:
           - Id: s3
             DomainName: !GetAtt SiteBucket.RegionalDomainName
