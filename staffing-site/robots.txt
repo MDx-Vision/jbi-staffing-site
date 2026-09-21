@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://staffing.jbisoftware.com/sitemap.xml
+Sitemap: https://www.jbisoftware.com/sitemap.xml
