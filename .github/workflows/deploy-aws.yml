@@ -1,6 +1,6 @@
-name: Deploy to AWS (S3 + CloudFront)
+name: Deploy PRODUCTION to AWS (www.jbisoftware.com)
 
-# Runs alongside the GitHub Pages deploy until cutover.
+# PRODUCTION: runs on `main` only. Staging is deploy.yml (branch `staging`, GitHub Pages).
 # Skips itself until the three repo variables below are set
 # (Settings → Secrets and variables → Actions → Variables):
 #   AWS_DEPLOY_ROLE_ARN, S3_BUCKET, CF_DISTRIBUTION_ID

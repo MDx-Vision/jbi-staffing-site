@@ -1,8 +1,14 @@
-name: Deploy to GitHub Pages
+name: Deploy STAGING to GitHub Pages
+
+# STAGING: every push to the `staging` branch publishes to
+#   https://mdx-vision.github.io/jbi-staffing-site/
+# PRODUCTION is a separate workflow (deploy-aws.yml) that runs on `main`
+# and publishes to https://www.jbisoftware.com.
+# Flow: commit to staging -> review on the staging URL -> merge staging into main.
 
 on:
   push:
-    branches: [main]
+    branches: [staging]
   workflow_dispatch:
 
 permissions:
@@ -22,9 +28,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Build staging copy
+        # Same file set production uploads (no internal .md/.docx), plus a
+        # noindex tag so search engines never list the staging copy.
+        run: |
+          mkdir _staging
+          rsync -a --exclude '*.md' --exclude '*.docx' --exclude '.DS_Store' --exclude '.claude' staffing-site/ _staging/
+          find _staging -name '*.html' -exec sed -i 's#<head>#<head>\n    <meta name="robots" content="noindex, nofollow">#' {} +
+          grep -c 'noindex' _staging/index.html
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: staffing-site
+          path: _staging
       - id: deployment
         uses: actions/deploy-pages@v4
