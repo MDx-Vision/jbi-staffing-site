@@ -1,0 +1,40 @@
+name: Deploy to AWS (S3 + CloudFront)
+
+# Runs alongside the GitHub Pages deploy until cutover.
+# Skips itself until the three repo variables below are set
+# (Settings → Secrets and variables → Actions → Variables):
+#   AWS_DEPLOY_ROLE_ARN, S3_BUCKET, CF_DISTRIBUTION_ID
+# Values come from the outputs of the CloudFormation stack in infra/jbi-site.yaml.
+# Auth is GitHub OIDC — no AWS keys are stored in this repo.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+concurrency:
+  group: aws-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: ${{ vars.AWS_DEPLOY_ROLE_ARN != '' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
+          aws-region: us-east-1
+      - name: Sync site to S3
+        # Checkout contains tracked files only, so local untracked documents
+        # can never be uploaded. Internal docs that ARE tracked are excluded.
+        run: |
+          aws s3 sync staffing-site "s3://${{ vars.S3_BUCKET }}" --delete \
+            --exclude "*.md" --exclude "*.docx" --exclude ".DS_Store" --exclude ".claude/*"
+      - name: Invalidate CloudFront cache
+        run: aws cloudfront create-invalidation --distribution-id "${{ vars.CF_DISTRIBUTION_ID }}" --paths "/*"
